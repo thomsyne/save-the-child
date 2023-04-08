@@ -1,0 +1,181 @@
+<!-- <div class="empty" style="height:50vh; width: 100px; background: transparent;"></div> -->
+<section class="plans">
+  <div class="plans__header" id="plans">
+    <h3 class="plans__header__title">Plans for all business sizes</h3>
+    <p class="plans__header__text">
+      Simple, transparent pricing designed for all business sizes. <br />
+      Pick the right plan for your business.
+    </p>
+  </div>
+  
+  <div class="subscription-options">
+    <div class="subscription-options__option">
+      <div class="mb-3">
+        <h4 class="no-margin-t mb-3">Mobile Plan</h4>
+        <p class="subscription-options__option__text">
+          This plan allows you to get started on your phone. You can make cash
+          sales from your store directly on your mobile phone.
+        </p>
+        <div class="subscription-options__price">
+          <h3 class="heading__3">
+            ₦1,000 <span class="text__small text-gray">per month</span>
+          </h3>
+        </div>
+        <button
+          class="subscription-options__btn btn btn-outline-primary"
+          [routerLink]="['/onboarding']"
+          [queryParams]="{ plan: 'mobile' }"
+        >
+          Get Started
+        </button>
+      </div>
+      <div class="subscription-options__ability">
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Access Via Mobile Phone
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Make Cash Sales
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Monitor Inventory
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          More Plan Benefits
+        </p>
+      </div>
+    </div>
+  
+    <div
+      class="subscription-options__option subscription-options__option--selected"
+    >
+      <div class="mb-3">
+        <div class="flexed mb-3">
+          <h4 class="no-margin">Lease Plan</h4>
+          <p class="badge no-margin">Popular Plan</p>
+        </div>
+        <p class="subscription-options__option__text">
+          This plan offers you the flexibility to lease POS devices as well as
+          access the RexRetail app and receive cash payments.
+        </p>
+        <div class="subscription-options__price">
+          <h3 class="heading__3">
+            ₦5,000 <span class="text__small text-gray">per month</span>
+          </h3>
+        </div>
+        <button
+          class="subscription-options__btn btn btn-primary"
+          [routerLink]="['/onboarding']"
+          [queryParams]="{ plan: 'lease' }"
+        >
+          Get Started
+        </button>
+      </div>
+      <div class="subscription-options__ability">
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Everything on Mobile Plan
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Lease POS Terminals
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Choose No. Of POS to own
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Receive Card Payments
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          More Plan Benefits
+        </p>
+      </div>
+    </div>
+  
+    <div class="subscription-options__option">
+      <div class="mb-3">
+        <h4 class="no-margin-t mb-3">Outright Plan</h4>
+        <p class="subscription-options__option__text">
+          This plan allows you to make payments to own the POS device at a go, and
+          access RexRetail with one subscription.
+        </p>
+        <div class="subscription-options__price">
+          <h3 class="heading__3">
+            ₦10,000 <span class="text__small text-gray">per month</span>
+          </h3>
+        </div>
+        <button
+          class="subscription-options__btn btn btn-outline-primary"
+          [routerLink]="['/onboarding']"
+          [queryParams]="{ plan: 'outright' }"
+        >
+          Get Started
+        </button>
+      </div>
+      <div class="subscription-options__ability">
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Everything on Lease Plan
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Own POS Terminal(s)
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          Accept Cash & Card Payments
+        </p>
+        <p class="text__small text-gray">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__checkbox__red.svg"
+            alt="check"
+          />
+          More Plan Benefits
+        </p>
+      </div>
+    </div>
+  </div>
+  
+</section>

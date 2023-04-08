@@ -1,0 +1,15 @@
+<lib-loader></lib-loader>
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  [isDisabled]="buttonDisabled"
+  (cancel)="closeModal.emit()"
+  (submit)="addMerchant()"
+>
+  <lib-dynamic-form
+    [fieldset]="createMerchantForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

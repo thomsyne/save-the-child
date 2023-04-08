@@ -1,0 +1,126 @@
+<div class="faqs">
+  <div class="faqs__container">
+    <div class="faqs__menu">
+      <div class="faqs__menu--sticky">
+        <h3>Page Navigation</h3>
+        <div class="faqs__menu__items">
+          <a
+            [routerLink]="['/faqs']" fragment="onboarding"
+            [class.active]="!(activeFragment$ | async) || (activeFragment$ | async)==='onboarding'"
+          >
+            Onboarding
+          </a>
+          <a
+            [routerLink]="['/faqs']"fragment="features"
+            [class.active]="(activeFragment$ | async)==='features'"
+          >
+            Features
+          </a>
+          <a
+            [routerLink]="['/faqs']" fragment="payments"
+            [class.active]="(activeFragment$ | async)==='payments'"
+          >
+            Payments
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="faqs__article">
+      <div class="faqs__article__scroll">
+        <h2>FAQs</h2>
+        <section>
+          <h3 class="text-primary" id="onboarding">Onboarding</h3>
+          <div>
+            <h4>
+              When I fill the sign-up form to join RexRetail, what is next?
+            </h4>
+            <p>
+              Your details will be used to onboard you onto the platform.
+              Thereafter, you will receive an email giving you details on how to
+              complete your registration on the platform.
+            </p>
+          </div>
+          <div>
+            <h4>How soon will I get my POS delivered?</h4>
+            <p>
+              This will happen within 2-10 working days of receiving your
+              accurate business address details on the platform.
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3 class="text-primary" id="features">Features</h3>
+          <div>
+            <h4>As a first timer on the platform, what do I do next?</h4>
+            <p>
+              The next step will be to create a list of products and add them to
+              your shop’s inventory. Once that is done, add the quantity and
+              begin your sales process.
+            </p>
+          </div>
+          <div>
+            <h4>How do I add or remove inventory in my store?</h4>
+            <p>
+              Select <b>My Shops</b>, open selected shop, select Inventory, you
+              will see a display of all products available in that store. Go on
+              to add or remove inventory.
+            </p>
+          </div>
+          <div>
+            <h4>How do I see a list of my transactions?</h4>
+            <p>
+              Select <b>My Reports</b>, open Sales Reports and you can see the
+              details of the sales consummated in your shop, and the cashier who
+              facilitated the sale.
+            </p>
+          </div>
+          <div>
+            <h4>
+              What happens if I have an issue with a payment or any complaint?
+            </h4>
+            <p>
+              Select <b>Complaints</b>, enter details of the issue and you will
+              receive a response within 1-4 days. Alternatively, you can call
+              the support line, 0700-ACCELEREX.
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3 class="text-primary" id="payments">Payments</h3>
+          <div>
+            <h4>How can I collect payments from my customers?</h4>
+            <p>You can collect payments in cash and card.</p>
+          </div>
+          <div>
+            <h4>How can I pay for my subscription?</h4>
+            <p>There are two forms:</p>
+            <ol type="A">
+              <li>
+                Through your settlement. This means the money will be deducted
+                from your wallet when the subscription payment is due.
+              </li>
+              <li>
+                Card payment on the POS
+                <ul>
+                  <li>Login to your RexRetail account on your POS Device.</li>
+                  <li>Navigate to the Subscription Page.</li>
+                  <li>Select desired subscription plan.</li>
+                  <li>Insert your debit card.</li>
+                  <li>Enter your debit card pin.</li>
+                  <li>Click on the "Pay Now" button.</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <div>
+            <h4>What card types can I accept on the POS?</h4>
+            <p>
+              Both credit and debit cards are accepted on the POS. These
+              include: Mastercard, Visa and Verve cards.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

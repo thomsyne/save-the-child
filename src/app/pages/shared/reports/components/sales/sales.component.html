@@ -1,0 +1,103 @@
+
+    <div class="form-central__content pl-4">
+      <h5 class="heading__5 ">
+        Sales Summary
+      </h5>
+      <div class="row" style="height: 350px;">
+        <div class="row-col__md-6">
+          <div class="row">
+            <div class="row-col__md-4 pr-3" style="border-right: 1px solid #f2f2f2">
+              <div class="set-container">
+                <h4 class="heading__5 ">
+                  {{(summary$|async)?.sumThisMonth|number | customcurrency}}
+                </h4>
+                <span class="text-gray text__default">
+                  Sales <br> This Month
+                </span>
+              </div>
+            </div>
+            <div class="row-col__md-4 pr-3 pl-3" style="border-right: 0.5px solid #dfdede">
+              <div class="set-container">
+                <h4 class="heading__5 ">
+                  {{(summary$|async)?.sumThisYear|number | customcurrency}}
+                </h4>
+                <span class="text-gray text__default">
+                  Sales <br> This Year
+                </span>
+              </div>
+            </div>
+            <div class="row-col__md-4 pr-3 pl-3">
+              <div class="set-container">
+                <h4 class="heading__5 ">
+                  {{(summary$|async)?.sumAllTime|number| customcurrency}}
+                </h4>
+                <span class="text-gray text__default">
+                  Sales <br> All Time
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-col__md-6">
+          <div
+            class="row-col__md-12 settling-amount pl-3 pr-3"
+            style="border-left: 1px solid #f2f2f2; height: 100%;"
+            *ngIf="true"
+          >
+
+          <div *ngIf="!isUserMerchantAdmin" class="button-layout">
+            <lib-filters
+              style="margin-right: auto"
+              [filters]="filters"
+              (filter)="setFilters($event)"
+            >
+            </lib-filters>
+          </div>
+
+            <!-- Charts -->
+
+          <div class="row charts">
+
+            <div
+              class="row-col__md-6"
+              *ngIf="true"
+            >
+              <p
+                class="text-gray text__default pl-3"
+                style="text-align: center"
+              >
+                How Customers Pay
+              </p>
+              <dashboard-donut-container
+                *ngIf="summaryResponse?.length > 0"
+                [params]="salesData"
+                [colors]="colors"
+              ></dashboard-donut-container>
+
+              <h3 class="text-center" *ngIf="summaryResponse?.length <= 0">No data available for the selected period</h3>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <ng-container *ngIf="balance$|async as balance">
+    <lib-modal
+      *ngIf="showRequestSettlementModal && (balance$|async)"
+      [modalType]="modalData.modalType"
+      [header]="modalData.header"
+      [subHeader]="modalData.subHeader"
+      [buttonText]="modalData.buttonText"
+      [isDisabled]="buttonDisabled"
+      (cancel)="toggleSettlementModal()"
+      (submit)="makeRequest(balance.availableBalance)"
+    >
+      <lib-dynamic-form
+        #requestFormRef
+        [fieldset]="optFormField"
+        [errors]="errors"
+      ></lib-dynamic-form>
+    </lib-modal>
+  </ng-container>

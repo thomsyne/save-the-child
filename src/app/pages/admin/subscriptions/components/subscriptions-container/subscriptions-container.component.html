@@ -1,0 +1,28 @@
+<div  class="cards-container">
+  <div  class="container">
+
+    <div class="reposition-breadcrumbs" *ngIf="!currentUrl.includes('subscriptions')">
+      <ul class="breadcrumbs-container">
+        <li
+          class="crumb"
+          style="display: block"
+          routerLink="/subscriptions"
+          queryParamsHandling="preserve"
+        >
+          <a class="crumb-link">Subscriptions</a>
+        </li>
+    
+        <li
+          class="crumb active-crumb"
+          *ngIf="currentUrl.includes('edit')"
+        >
+          <a class="crumb-link">Edit subscription</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

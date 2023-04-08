@@ -1,0 +1,33 @@
+<div  class="cards-container">
+  <div  class="container">
+    <div class="reposition-breadcrumbs" *ngIf="currentUrl !== 'shops'">
+      <ul class="breadcrumbs-container">
+        <li
+          class="crumb"
+          style="display: block"
+          routerLink="/products/shops"
+        >
+          <a class="crumb-link">Shops</a>
+        </li>
+    
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'manage'">
+          <a class="crumb-link">Inventory</a>
+        </li>
+    
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'dashboard'">
+          <a class="crumb-link">Dashboard</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'inventory'">
+          <a class="crumb-link">Inventory</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'profile'">
+          <a class="crumb-link">Profile</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

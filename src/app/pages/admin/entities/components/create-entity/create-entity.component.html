@@ -1,0 +1,43 @@
+<lib-loader></lib-loader>
+<section class="section-center-create">
+  <div class="form-central">
+    <div class="form-central__headings">
+      <h4 class="heading__4">Add Corporate Entity</h4>
+      <span class="text__default"
+        >Provide details of the corporate account you wish to add.</span
+      >
+    </div>
+
+    <div class="form-central__content">
+      <div class="form-central__form">
+        <div class="form-parent">
+          <lib-dynamic-form
+            #createEntityForm
+            [fieldset]="form"
+            [errors]="errors"
+          ></lib-dynamic-form>
+        </div>
+      </div>
+
+      <ng-container *ngFor="let field of uploadFields; let i = index">
+        <lib-file-upload
+          [uploadMetadata]="field"
+          (onFileSelected)="uploadDocument($event, field)"
+          (onDeleteFile)="onFileDeleted(field)"
+          [showFileUrl]="true"
+        ></lib-file-upload>
+      </ng-container>
+
+      <div class="form-central__content-actions">
+        <button class="btn btn-white" routerLink="/entities">Cancel</button>
+        <button
+          class="btn btn-primary"
+          [disabled]="!createEntityForm.form.valid"
+          (click)="createEntity()"
+        >
+          Create Entity
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

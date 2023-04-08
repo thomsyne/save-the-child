@@ -1,0 +1,21 @@
+.multiple {
+  text-align: center;
+  svg {
+    vertical-align: bottom;
+    width: 20px;
+    height: 20px;
+  }
+  &__btn {
+    border: 0.5px solid #9C9898;
+    border-radius: 4px;
+    padding: 0.5rem 3rem;
+    background: #F9F9F9;
+    cursor: pointer;
+  }
+
+  span {
+    color: var(--color-primary);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,26 @@
+<div class="login">
+  <lib-loader></lib-loader>
+
+  <h1>Set Pin</h1>
+
+  <p class="sub-head text-gray">
+    Kindly enter the one time code sent to “samplemail@gmail.com” and proceed to
+    setup your desired password
+  </p>
+
+  <div class="form-central__form">
+    <lib-dynamic-form
+      #recoverPinForm
+      [fieldset]="recoverPinDetailsForm"
+      [errors]="errors"
+    ></lib-dynamic-form>
+  </div>
+
+  <button
+    [disabled]="recoverPinForm.form.invalid"
+    class="btn btn-primary btn__lg login__button"
+    (click)="completeUserPinChange()"
+  >
+    Set New Password and Login
+  </button>
+</div>

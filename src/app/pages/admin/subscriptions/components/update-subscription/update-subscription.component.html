@@ -1,0 +1,42 @@
+<section class="center-layout">
+  <div class="form-central" *ngIf="subscription">
+    <div class="form-central__headings">
+      <h4 class="heading__4">{{subscription.name}}</h4>
+      <div class="text__default macro-detail">
+        <span>Create: {{subscription.createdOn|date}}</span>
+        <div>
+          <span class="text__sm mr-2">Status:</span>
+          <div class="badge no-margin" [ngClass]="subscription.active ? 'badge--success' : 'badge--warn'" style="display: inline-block;">
+            {{subscription.active ? "Active" : "Inactive"}}
+          </div>
+          <button
+            class="btn btn__sm" (click)="updateSubscriptionStatus()"
+            [ngClass]="subscription.active ? 'btn-reject' : 'btn-success'">
+            {{subscription.active ? "Deactivate" : "Activate"}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-central__content form-central__content-sm">
+      <div class="form-central__form">
+        <lib-dynamic-form
+          #updateForm
+          [fieldset]="formData"
+          [errors]="errors"
+        ></lib-dynamic-form>
+      </div>
+      <div class="form-central__content-actions">
+        <button routerLink="/subscriptions" queryParamsHandling="preserve" class="btn btn-white">
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="updateSubscription()"
+          [disabled]="updateForm.form.invalid"
+        >
+          Update subscription
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,73 @@
+<h3 class="heading__3">Product Image</h3>
+<p class="text-gray text__small">
+  We recommend that you an image with a <br />
+  resolution of 2000 X 2000 for the best result <br />
+  possible.
+</p>
+
+
+<div style="display: flex; flex-wrap: wrap;">
+  <!-- Existing Files -->
+  <div
+    class="files mb-2 flexed"
+    style="align-items: center; justify-content: center"
+    *ngFor="let url of existingFileUrls; let i = index"
+  >
+    <img [src]="url" alt="file" class="img-fluid mr-2" style="width: 4rem" />
+    <div class="mr-auto">
+      <h6 class="font-weight-bold">Image {{ i + 1 }}</h6>
+      <!-- <h6 class="font-weight-bold">{{ file.name }}</h6>
+      <h6>{{ file.width }} x {{ file.height }}</h6> -->
+    </div>
+    <img
+      src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__cancel__active.svg"
+      style="cursor: pointer"
+      alt="delete"
+      (click)="rmvFile(url, true)"
+    />
+  </div>
+
+  <!-- New Files -->
+  <div
+    class="files mb-2 flexed"
+    style="align-items: center; justify-content: center; width: fit-content; position: relative;"
+    *ngFor="let file of filesToBeUploaded; let index = index;"
+  >
+
+    <img
+      [src]="imageUrls[index]"
+      alt="file"
+      class="img-fluid mr-2"
+      style="width: 4rem; height: 100%;"
+    />
+    <!-- <img [src]="" alt="file" class="img-fluid mr-2" width="150"> -->
+    <!-- <div class="mr-auto">
+      <h6 class="font-weight-bold">{{ file.name }}</h6>
+      <h6>{{ file.width }} x {{ file.height }}</h6>
+    </div> -->
+    <img
+      src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__cancel__active.svg"
+      style="cursor: pointer; position: absolute; top: -10px; right: 5px"
+      alt="delete"
+      (click)="rmvFile(file.name, false)"
+    />
+  </div>
+
+  <!-- Dummy upload btton -->
+  <input
+    type="file"
+    #upload
+    style="display: none"
+    accept="image/*"
+    (change)="prepareFiles($event)"
+    multiple="true"
+  />
+
+</div>
+<button
+class="btn btn-secondary btn__lg"
+style="border: 0.5px solid #9c9898; width: 70%"
+(click)="upload.click()"
+>
+Upload your images
+</button>

@@ -1,0 +1,85 @@
+<lib-loader></lib-loader>
+<section class="center-layout">
+  <div class="form-central">
+    <div class="form-central__headings">
+      <h4 class="heading__4">Update Staff</h4>
+      <span class="text__default"
+        >Please enter the updated details of this staff.</span
+      >
+    </div>
+    <div class="form-central__content">
+      <div class="form-central__form">
+        <div class="row">
+          <div class="row-col__sm-6 section__role">
+            <lib-dynamic-form
+              #updateForm
+              [fieldset]="updateStaffForm"
+              [errors]="errors"
+            >
+            </lib-dynamic-form>
+          </div>
+          <div class="row-col__sm-6 section__access__container">
+            <!-- <div class="section__cash">
+              <h4 class="heading__4" >
+                ₦{{(selectedStaffBalance|async)?.availableBalance|number}}
+              </h4>
+              <div class="section__cash__cont">
+                <p>Amount In Cashier’s Hand</p>
+                <button class="btn btn__sm section__cash__btn">Collect Cash</button>
+              </div>
+            </div> -->
+            <button
+              class="btn btn-primary"
+              style="float: right"
+              *ngIf="
+                selectedStaff?.merchantCode &&
+                !storageService.getLoggedInUser()?.userDetails?.merchant?.code
+              "
+              (click)="resendToken()"
+              [disabled]="loader?.status"
+            >
+              Resend Token
+            </button>
+            <h5 class="heading__5 w-50">Staff Access</h5>
+
+            <div class="section__access" *ngIf="roleAccessForm.length">
+              <lib-dynamic-form
+                #updateAccessForm
+                [fieldset]="roleAccessForm"
+                [errors]="errors"
+              >
+              </lib-dynamic-form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-central__content-actions">
+        <button routerLink="/staff/manage" class="btn btn-white">Cancel</button>
+        <button
+          class="btn btn-primary"
+          (click)="generateOTP()"
+          [disabled]="updateForm.form.invalid"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<lib-modal
+  *ngIf="showOTPModal"
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  [isDisabled]="buttonDisabled"
+  (cancel)="showOTPModal = !showOTPModal"
+  (submit)="updateStaff()"
+>
+  <lib-dynamic-form
+    #OTPForm
+    [fieldset]="optFormField"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

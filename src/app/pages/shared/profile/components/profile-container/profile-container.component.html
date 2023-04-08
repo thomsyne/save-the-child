@@ -1,0 +1,39 @@
+<div class="cards-container">
+  <div class="container">
+
+    <!-- dynamic header -->
+    <div class="top-section flexed mb-4">
+      <div class="intro flex-1">
+        <h3 class="heading__4 no-margin">User Profile</h3>
+      </div>
+    </div>
+
+    <!-- tabs -->
+    <ul class="tabs">
+      <li
+        class="tab-item" [routerLink]="'/profile/basic-info'"
+        routerLinkActive="active"
+      >
+        Admin Information
+      </li>
+      <li
+        class="tab-item"
+        [routerLink]="'/profile/business-info'"
+        routerLinkActive="active"
+      >
+        Business Information
+      </li>
+      <li
+        class="tab-item"
+        [routerLink]="'/profile/security'"
+        routerLinkActive="active"
+      >
+        Security
+      </li>
+    </ul>
+
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

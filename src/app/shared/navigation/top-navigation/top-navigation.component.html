@@ -1,0 +1,26 @@
+<div class="topnav">
+  <div class="top-nav-wrapper">
+    <img
+      class="hamburger"
+      src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__hamburger__menu__black.svg"
+      (click)="toggleHamburger.emit()"
+    />
+    <div class="topnav-container">
+      <span class="topnav-gravatar">{{ initials }}</span>
+      <div class="topnav-container-details">
+        <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+        <span>{{ user.userRole }}</span>
+      </div>
+      <div style="height: 100%; display: flex; align-items: center">
+        <svg style="width: 16px; height: 16px">
+          <use
+            xlink:href="../../../../assets/icons/sprite.svg#arrow-down-icon"
+          ></use>
+        </svg>
+      </div>
+      <div class="topnav-container-dropdown">
+        <a *ngFor="let link of links" (click)="linkClicked(link)">{{ link }}</a>
+      </div>
+    </div>
+  </div>
+</div>

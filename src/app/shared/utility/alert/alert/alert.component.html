@@ -1,0 +1,30 @@
+<div class="alert__stack">
+  <div *ngFor="let alert of alerts" class="{{ cssClass(alert) }}">
+    <ng-container *ngIf="alert.isFlag">
+      <img
+        [src]="getLeadingImage(cssClass(alert))"
+        [alt]="cssClass(alert)"
+        [class]="getImageClass(alert)"
+      />
+      <span class="flag-message" [innerHTML]="alert.title"></span>
+      <a class="close" (click)="removeAlert(alert)">&times;</a>
+    </ng-container>
+
+    <ng-container #showAlert *ngIf="!alert.isFlag">
+      <div class="alert-image">
+        <img [src]="getLeadingImage(cssClass(alert))" alt="success" />
+      </div>
+      <div class="alert-content">
+        <h4>{{ alert.title }}</h4>
+        <p>
+          {{ alert.message }}
+        </p>
+        <a
+          class="btn btn-link no-margin no-padding"
+          (click)="removeAlert(alert)"
+          >Close</a
+        >
+      </div>
+    </ng-container>
+  </div>
+</div>

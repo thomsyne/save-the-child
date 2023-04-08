@@ -1,0 +1,229 @@
+.onboarding {
+  height: 100vh;
+  max-height: 100vh;
+  display: grid;
+  grid-template-columns: 600px 1fr;
+  grid-template-rows: 1fr;
+  position: relative;
+  overflow: hidden;
+
+  .bg-right {
+    width: fit-content;
+    position: absolute;
+    bottom: -200px;
+    left: -40px;
+  }
+  .bg-left {
+    width: fit-content;
+    position: absolute;
+    bottom: -200px;
+    right: -40px;
+  }
+
+  &--full {
+    display: flex;
+  }
+
+  &__logo {
+    width: 110px;
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    font-size: 44px;
+
+    span {
+      color: var(--color-primary);
+      font-size: 44px;
+      font-weight: 600;
+    }
+  }
+
+  &__text {
+    font-size: 24px;
+  }
+
+  &__sidebar {
+    max-height: 100vh;
+    padding: 32px 32px 10px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px -55px 15px -14px rgba(0,0,0,0.71) inset;
+    // box-shadow: inset 0px -60px 13px -4px rgba(0,0,0,0.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__bg1 {
+      background: url("https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__market__pay__with__pos.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &__bg2 {
+      background: url("https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__happy__man__with__n5.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &__bg3 {
+      background: url("https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__happy__woman__in__pocadot__with__pos.png");
+      background-repeat: no-repeat;
+      // background-size: cover;
+      background-size: 100% 100vh;
+    }
+  }
+
+  &__stage {
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 42px;
+    height: 100vh;
+    width: calc(100% - 200px);
+    padding-left: 60px;
+
+    &--center {
+      width: 100vw;
+      align-items: center;
+      padding: 0;
+    }
+
+    &__monitor {
+      margin: 55px 0 0;
+
+      .monitor-guage-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        // gap: 1rem;
+        .monitor-guage {
+          width: 32%;
+          height: 8px;
+          border-radius: 100px;
+          background: #f0eded;
+
+          &--current-step {
+            background: #FBCACC;
+          }
+          &--past-step {
+            background: #da1219;
+          }
+          &--next-step {
+            background: #f0eded;
+          }
+        }
+      }
+    }
+  }
+
+  &__footer {
+    color: white;
+    margin-right: -32px;
+
+    &__text {
+      letter-spacing: 1.26px;
+      line-height: 2rem;
+      background: #3F3F3F9C;
+      padding: 24px 22px;
+      margin-bottom: 40px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    &__action {
+      text-align: end;
+
+      button { border: none}
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .onboarding {
+    grid-template-columns: 380px 1fr;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &__sidebar {
+      padding: 52px 10px 0;
+    }
+    &__stage {
+      &__content {
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    .bg-left {
+      // display: none;
+      top: -30%;
+      right: -120px;
+    }
+
+    .bg-right {
+      // display: none;
+      top: -30%;
+      left: -120px;
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .onboarding {
+    grid-template-columns: 1fr;
+    grid-template-rows: 90px 1fr;
+    text-align: center;
+
+    &__logo {
+      width: 80px;
+      // margin: auto;
+      margin-bottom: 3rem;
+    }
+
+    &__sidebar {
+        &__bg1, &__bg2, &__bg3 {
+          background: transparent;
+          box-shadow: none;
+      }
+    }
+    &__footer { display: none;}
+
+    &__stage {
+      height: 100%;
+      text-align: start;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 8px 10px;
+
+      &__content {
+        width: 100%;
+      }
+
+      &__monitor {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+.onboarding-modal {
+  &__header {
+    text-align: center;
+    background: #dce9f9;
+
+    h1 {
+      color: #4f84cf;
+    }
+    p {
+      color: #66a9df;
+    }
+  }
+
+  &__content {
+    background: white;
+  }
+}

@@ -1,0 +1,106 @@
+<section class="center-layout" *ngIf="merchant$|async as merchant">
+  <div class="form-central">
+    <div class="form-central__headings">
+      <h4 class="heading__4" *ngIf="!showEditSubscription">My Subscription</h4>
+      <h4 class="heading__4" *ngIf="showEditSubscription">Upgrade My Subscription</h4>
+      <span class="text__default">
+        Here you view you Make payment or upgrade your current subscription.
+      </span>
+    </div>
+    <div class="form-central__content form-central__content-sm" *ngIf="!showEditSubscription">
+      <div class="form-central__form">
+        <div class="text-center">
+          <h2 class="no-margin">{{merchant?.name}}</h2>
+          <div class="head__status">
+            <p class="text-gray no-margin">Paid: {{merchant?.startDate|date}}</p>
+            <div>
+              <span class="text-gray">Status: </span>
+              <span class="badge no-margin" [ngClass]="merchant.active ? 'badge--success' : 'badge--warn'">
+                {{merchant?.active ? "Active" : "Inactive"}}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rexpay-sub">
+          <div class="rexpay-sub__dat">
+            <p class="text-gray">Current Plan:</p>
+            <p class="">{{merchant?.subscriptionPlan}}</p>
+          </div>
+          <div class="rexpay-sub__dat">
+            <p class="text-gray">Renewal Date:</p>
+            <p class="">{{merchant?.paymentCycle}}</p>
+          </div>
+          <hr>
+          <div class="rexpay-sub__dat no-p">
+            <p class="text-gray">Paying:</p>
+            <p class="">NGN {{merchant?.currentSubscriptionPlan.fee|number}}</p>
+          </div>
+          <div class="rexpay-sub__dat">
+            <p class="text-gray">Next Repayment Date:</p>
+            <p class="">{{merchant?.nextPaymentDate|date}}</p>
+          </div>
+          <div class="rexpay-sub__dat">
+            <p class="text-gray">Billing Cycle:</p>
+            <p class="">{{merchant?.paymentCycle}}</p>
+          </div>
+          <p
+            class="text-center text__bold cursor-pointer pb-2 rexpay-sub__upgrade"
+            style="color: #13A500;"
+            (click)="toggleCurrentDisplay()"
+          >
+            Upgrade My Subscription
+          </p>
+        </div>
+
+      </div>
+      <div class="form-central__content-actions">
+        <button class="btn btn-white" routerLink="/pay/rexpay">Cancel</button>
+        <div class="ml-auto" *ngIf="!!pendingInvoice">
+          <app-initiate-payment
+            [invoiceReference]="pendingInvoice.reference"
+            [invoiceId]="pendingInvoice.id"
+          >
+          </app-initiate-payment>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-central__content form-central__content-sm" *ngIf="showEditSubscription">
+      <div class="form-central__form">
+
+        <div class="rexpay-sub mb-3">
+          <div class="rexpay-sub__detail">
+            <div class="rexpay-sub__detail__head">
+              <p class="text-gray">Current Plan:</p>
+              <p class="text-gray">Renewal Date:</p>
+              <p class="text-gray">Paying:</p>
+              <p class="text-gray">Next Repayment Date:</p>
+              <p class="text-gray">Billing Cycle:</p>
+            </div>
+            <div class="rexpay-sub__detail__data">
+              <p class="">{{merchant?.subscriptionPlan}}</p>
+              <p class="">{{merchant?.paymentCycle}}</p>
+              <p class="">NGN {{merchant?.currentSubscriptionPlan.fee|number}}</p>
+              <p class="">{{merchant?.nextPaymentDate|date}}</p>
+              <p class="">{{merchant?.paymentCycle}}</p>
+            </div>
+          </div>
+        </div>
+
+        <lib-dynamic-form
+          #updateSubscriptionFormRef
+          [fieldset]="updateSubscriptionForm"
+          [errors]="errors"
+        ></lib-dynamic-form>
+
+      </div>
+      <div class="form-central__content-actions">
+        <button class="btn btn-white" (click)="toggleCurrentDisplay()">
+          Cancel
+        </button>
+        <button class="btn btn-primary" (click)="updateSubscription()">Upgrade Plan</button>
+      </div>
+    </div>
+  </div>
+</section>

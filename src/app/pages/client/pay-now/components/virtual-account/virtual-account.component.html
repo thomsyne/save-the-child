@@ -1,0 +1,52 @@
+<section class="center-layout" *ngIf="true">
+  <div class="form-central">
+    <div class="form-central__headings">
+      <h4 class="heading__4">Pay With Transfer</h4>
+
+      <span class="text__default">
+        Please do not close this window or refresh this window till the transaction is complete
+      </span>
+    </div>
+    <div class="form-central__content form-central__content-sm">
+      <div class="form-central__form">
+        <div class="text-left">
+          <h2 class="no-margin">{{merchantDetails?.currency || 'NGN'}} {{amount}}</h2>
+          <div class="head__status">
+            <p class="text-gray no-margin">{{merchantDetails?.name}}</p>
+          </div>
+          <hr/>
+          <p class=" head__tagline mt-2">Kindly proceed to your mobile/internet banking app to complete your bank transfer.</p>
+        </div>
+
+        <div class="rexpay-sub">
+          <div class="rexpay-sub__detail">
+            <p class="text-gray">Bank:</p>
+            <h3>{{paymentDetails?.bankName}}</h3>
+          </div>
+          <div class="rexpay-sub__detail">
+            <p class="text-gray">Account Name:</p>
+            <h3>{{paymentDetails?.accountName}}</h3>
+          </div>
+          <div class="rexpay-sub__detail mt-3">
+            <p class="text-gray">Account Number:</p>
+            <h2 class="font-bolder">{{paymentDetails?.accountNumber}}
+              <span>
+                <svg _ngcontent-nir-c65="" class="icon"><use _ngcontent-nir-c65="" xlink:href="../../../../../../assets/icons/sprite.svg#copy"></use></svg>
+              </span>
+            </h2>
+          </div>
+
+          <h4 *ngIf="timerStarted" class="text-gray mt-4">
+            Expires in {{minutesToEndTime}}:{{secondsToEndTime}}
+          </h4>
+        </div>
+
+      </div>
+      <div class="form-central__content-actions">
+        <button *ngIf="true" class="btn btn-primary" (click)="checkStatus()">I have completed this transfer</button>
+      </div>
+
+      <app-powered-by></app-powered-by>
+    </div>
+  </div>
+</section>

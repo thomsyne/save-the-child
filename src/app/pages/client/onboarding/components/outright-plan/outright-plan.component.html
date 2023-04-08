@@ -1,0 +1,92 @@
+<!-- <div class="outright">
+  <div class="billing">
+    <h5 class="heading__5 no-margin-b">Select preferred billing cycle</h5>
+    <p class="text__small text-gray no-margin-t">
+      Kindly select the duration that suits your need.
+    </p>
+  </div>
+  <div class="counter-container">
+    <span class="counter__text">
+      Duration (Months)
+      <p class="text__small text-gray">
+        Your subscription will be renewed monthly for your indicated duration.
+      </p>
+    </span>
+    <div class="counter">
+      <span class="counter__control" (click)="changeDuration('decrease')"
+        >-</span
+      >
+      <span class="counter__value">{{ amountOfMonths }}</span>
+      <span class="counter__control" (click)="changeDuration('increase')"
+        >+</span
+      >
+    </div>
+    <span class="counter__price"
+      >&#8358;{{ amountOfMonths * durationCost | formatNumber }}</span
+    >
+  </div>
+
+  <div class="counter-container">
+    <span class="counter__text">
+      Number of POS Device(s)
+      <p class="text__small text-gray">Choose your preferred number of our devices you want for your shop</p>
+    </span>
+    <div class="counter">
+      <span class="counter__control" (click)="changePOS('decrease')">
+        -
+      </span>
+      <span class="counter__value">{{ numberOfPOS }}</span>
+      <span class="counter__control" (click)="changePOS('increase')">
+        +
+      </span>
+    </div>
+    <span class="counter__price">
+      &#8358;{{ numberOfPOS * posCost | formatNumber }}
+    </span>
+  </div>
+
+  <span
+    >Your subscription will be renewed monthly for your indicated duration.
+    e.g., 1 = 1 month, 5 = 5 months.</span
+  >
+</div> -->
+
+
+<div class="content">
+  <div class="billing">
+    <h5 class="heading__5 no-margin-b">Select preferred billing cycle</h5>
+    <p class="text__small text-gray no-margin-t">
+      These are the available plans under the Lease Plan Category. Please select
+      one that best suits your need.
+    </p>
+  </div>
+  <div class="subscription-options">
+    <label
+      *ngFor="let sub of subPlans; let i = index"
+      class="radio"
+      (click)="selectedOption = i; planSelected.emit(sub)"
+      [class.selected]="selectedOption == i.toString()"
+    >
+      <span class="radio__input">
+        <input type="radio" name="radio" value="name" />
+        <span class="radio__control"></span>
+      </span>
+      <span class="radio__label">
+        <h4 class="option-title">
+          {{ sub.name }} - NGN {{ posCost * sub.maxNumberOfPOSDevices + sub.fee | number }}
+        </h4>
+        <div>
+          <span
+            class="option-about pr-3"
+            style="border-right: 0.5px solid #dfdede"
+          >
+            No of POS Devices: {{ sub.maxNumberOfPOSDevices }}
+          </span>
+          <span class="option-about ml-3">
+            No of Users: {{ sub.maxNumberOfUsers }}
+          </span>
+        </div>
+      </span>
+    </label>
+  </div>
+</div>

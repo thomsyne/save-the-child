@@ -1,0 +1,34 @@
+<div class="outright">
+  <div class="billing">
+    <h5 class="heading__5 no-margin-b">Select preferred billing cycle</h5>
+    <p class="text__small text-gray no-margin-t">Kindly select the duration that suits your need.</p>
+  </div>
+  <div class="counter-body">
+    <div class="counter-body__header">
+      <h4 class="headin__4 text-gray no-margin">Mobile plan</h4>
+      <p class="text__default no-margin cursor-pointer" (click)="changePlan.emit()">Change Plan</p>
+    </div>
+    <div class="counter-container">
+
+      <div class="counter__text">
+        <h4 class="headin__4 no-margin-b">Duration (Months)</h4>
+        <p class="text__small text-gray no-margin">
+          Your subscription will be renewed <br> monthly for your indicated duration.
+        </p>
+      </div>
+      <div class="counter">
+        <span class="counter__control" (click)="changeDuration('decrease')">
+          -
+        </span>
+        <span class="counter__value">{{ amountOfMonths }}</span>
+        <span class="counter__control" (click)="changeDuration('increase')">
+          +
+        </span>
+      </div>
+      <p class="counter__price">
+        &#8358;{{ amountOfMonths * durationCost | formatNumber }}.00
+      </p>
+    </div>
+  </div>
+
+</div>

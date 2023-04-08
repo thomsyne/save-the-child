@@ -1,0 +1,29 @@
+<div class="login">
+  <lib-loader></lib-loader>
+
+  <h1>Forgot Pin?</h1>
+
+  <p class="sub-head">
+    Kindly provide your registered phone number and merchant code to help us
+    reset your account.
+  </p>
+
+  <div class="form-central__form">
+    <lib-dynamic-form
+      #loginForm
+      [fieldset]="loginDetailsForm"
+      [errors]="errors"
+    ></lib-dynamic-form>
+  </div>
+
+  <button
+    [disabled]="loginForm.form.invalid || loader.status"
+    class="btn btn-primary btn__lg login__button"
+    (click)="sendOTP()"
+  >
+    Send Reset Link
+  </button>
+  <a class="login__signup" routerLink="/login">
+    Remember Password? <span>Return to Login</span>
+  </a>
+</div>

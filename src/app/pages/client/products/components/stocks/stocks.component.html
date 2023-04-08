@@ -1,0 +1,26 @@
+<h1>{{productName}} Stocks</h1>
+<span class="text-gray">Here you see all your available stock updates.</span>
+<div class="row-col__md-12 view mt-5">
+  <div class="view__title row">
+    <h5 class="heading__5 no-margin row-col__md-4">Store</h5>
+    <h5 class="heading__5 no-margin row-col__md-4">Quantity</h5>
+    <h5 class="heading__5 no-margin row-col__md-4">Minimum Stock</h5>
+  </div>
+
+  <div class="view__detail" *ngIf="stockHistory?.length > 0">
+    <div
+    *ngFor="let item of stockHistory; let i = index"
+      class="view__detail__row row pb-3"
+      style="border-bottom: 0.5px solid #dfdede"
+    >
+      <p class="no-margin row-col__md-4">{{item?.store}}</p>
+      <p class="no-margin row-col__md-4">{{item?.quantity}}</p>
+      <p class="no-margin row-col__md-4">{{item?.minimumStock}}</p>
+    </div>
+  </div>
+
+  <lib-no-table-data *ngIf="stockHistory?.length == 0"></lib-no-table-data>
+
+  <!-- Download CSV -->
+  <lib-download-csv (downloadCsv)="generateCsv()"></lib-download-csv>
+</div>

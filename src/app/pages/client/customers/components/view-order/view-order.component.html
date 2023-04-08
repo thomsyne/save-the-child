@@ -1,0 +1,36 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header + orderDetail.orderNumber"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  (cancel)="closeModal.emit()"
+  (submit)="download()"
+>
+  <div class="order-sub">
+    <p class="text-gray no-margin">Customer: {{ orderDetail.customer }}</p>
+    <p class="text-gray no-margin">Date: {{ orderDetail.orderDate | date }}</p>
+    <p class="text-gray no-margin">Sold By: {{ orderDetail.soldBy }}</p>
+    <p class="text-gray no-margin">Total: {{ orderDetail.totalQuantity }}</p>
+  </div>
+
+  <div class="order-products view mt-3">
+    <div class="view__title row" style="border-bottom: 0.5px solid #dfdede">
+      <h5 class="heading__5 no-margin row-col__md-2">Qty</h5>
+      <h5 class="heading__5 no-margin row-col__md-6">Product Name</h5>
+      <h5 class="heading__5 no-margin row-col__md-4">Price</h5>
+    </div>
+
+    <div class="view__detail">
+      <div
+        *ngFor="let item of orderDetail.items"
+        class="view__detail__row row pb-3"
+      >
+        <p class="no-margin row-col__md-2">{{ item.quantity }}X</p>
+        <p class="no-margin row-col__md-6">{{ item.productName }}</p>
+        <p class="no-margin row-col__md-4">
+          {{ orderDetail.currency }} {{ item.quantity * item.unitPrice }}
+        </p>
+      </div>
+    </div>
+  </div>
+</lib-modal>

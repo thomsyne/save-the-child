@@ -1,0 +1,26 @@
+// TODO: move classes to design system and CDN
+
+.alert__stack {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  right: 2rem;
+  z-index: 9999;
+  min-width: 17rem;
+  justify-content: center;
+  align-items: center;
+  transition: all ease-in 5s;
+  flex-wrap: wrap;
+}
+
+.flag .flag-message {
+  margin: auto 0 auto 20px;
+}
+
+.close {
+  margin-left: auto;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: white;
+}

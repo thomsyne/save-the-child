@@ -1,0 +1,25 @@
+<div *ngIf="formReady">
+  <form [formGroup]="form">
+    <div class="row" style="margin-bottom: 0">
+      <div
+        *ngFor="let field of fieldset"
+        class="{{ field.gridStyle }}"
+        style="position: relative"
+      >
+        <app-dynamic-field [field]="field"></app-dynamic-field>
+        <div [ngxErrors]="field.name">
+          <span
+            class="validation-message  {{ error.text ? 'invalid' : 'valid' }} {{
+              field.type === 6 ? 'hideCautionIcon' : ''
+            }}"
+            *ngFor="let error of errors"
+            [ngxError]="error.name"
+            class="error"
+          >
+            {{ error.text }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

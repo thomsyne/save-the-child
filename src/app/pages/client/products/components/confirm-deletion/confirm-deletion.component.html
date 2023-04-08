@@ -1,0 +1,19 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  (cancel)="toggleShowDeletionModal()"
+  (submit)="submit()"
+>
+
+<div class="multiple">
+  <div>
+    <ul>
+      <li *ngFor="let item of checkedItems">{{item.name}}</li>
+    </ul>
+  </div>
+</div>
+
+</lib-modal>
+

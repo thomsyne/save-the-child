@@ -1,0 +1,30 @@
+.action-container {
+  display: flex;
+  height: calc(100vh - 300px);
+  justify-content: center;
+  align-items: center;
+}
+
+.box-container {
+  width: 480px;
+  height: 431px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 50px 30px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+.action {
+  display: flex;
+  justify-content: space-between;
+
+  &__head {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}

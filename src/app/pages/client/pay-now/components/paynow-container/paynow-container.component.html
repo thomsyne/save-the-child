@@ -1,0 +1,42 @@
+<div  class="cards-container">
+  <div  class="container">
+
+    <div class="reposition-breadcrumbs" *ngIf="currentUrl !== 'pay'">
+      <ul class="breadcrumbs-container">
+        <li
+          class="crumb"
+          style="display: block"
+          routerLink="/pay"
+        >
+          <a class="crumb-link">Pay Now</a>
+        </li>
+
+        <li
+          class="crumb active-crumb"
+          *ngIf="currentUrl == 'pos' || currentUrl == 'rexpay' || currentUrl == 'transfer'"
+        >
+          <a class="crumb-link">Choose a service</a>
+        </li>
+
+
+        <li
+          class="crumb active-crumb"
+          *ngIf="currentUrl == 'advance'"
+        >
+          <a class="crumb-link">Choose a service / Pay in Advance</a>
+        </li>
+
+        <li
+          class="crumb active-crumb"
+          *ngIf="currentUrl.includes('virtual-account')"
+        >
+          <a class="crumb-link">Virtual Account</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="top-section flexed mb-3">
+  <div class="intro flex-1">
+    <h3 class="heading__4 no-margin">Pay Now</h3>
+    <span class="text__default text-dashboard-gray sub-text">
+      Here you can make payment for your subscription plans.
+    </span>
+  </div>
+</div>
+
+<div class="cards">
+  <div class="card" *ngFor="let control of controllers">
+    <img
+      [src]="control.img"
+      alt="map"
+      class="card-image"
+    />
+    <h5 class="heading__5 card-title">{{control.title}}</h5>
+    <span class="card-description">
+      {{control.text}}
+    </span>
+    <!-- <a class="btn btn__sm btn-outline-primary" [routerLink]="control.route"> -->
+    <a class="btn btn__sm btn-outline-primary" (click)="control.route()">
+      Open
+    </a>
+  </div>
+</div>
+
+<lib-modal
+  *ngIf="showPOSPayModal"
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  (cancel)="togglePOSModal()"
+  (submit)="togglePOSModal()"
+>
+
+<ul class="steps">
+  <li class="mb-3" *ngFor="let item of posPaySteps">{{item}}</li>
+</ul>
+</lib-modal>

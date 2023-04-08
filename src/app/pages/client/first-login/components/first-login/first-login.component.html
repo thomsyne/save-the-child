@@ -1,0 +1,65 @@
+<div class="auth-layout">
+  <img
+    routerLink="/"
+    src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/logos/logo__rexretail.svg"
+    class="auth-layout__logo"
+  />
+
+  <div class="auth-layout__container">
+    <!-- <lib-loader></lib-loader> -->
+    <div class="conteiner">
+      <div class="conteiner__image">
+        <img
+          src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__blue__paper__plane__with__blue__bg.svg"
+          alt="first-pay"
+        />
+      </div>
+
+      <div class="conteiner__head text-center">
+        <h5 class="heading__5">You're almost set</h5>
+        <p class="text__default text-gray no-margin">
+          Thanks for joining the RexRetail Platform.
+        </p>
+        <p class="text__default text-gray">
+          To get activated, kindly proceed to make payment for your chosen plan.
+        </p>
+      </div>
+
+      <div class="conteiner__data">
+        <div class="metadata-entry">
+          <span class="metadata-entry__name">Subscription Name:</span>
+          <span class="metadata-entry__value">
+            {{ pendingInvoice?.subscriptionName }}
+          </span>
+        </div>
+        <div class="metadata-entry">
+          <span class="metadata-entry__name">Subscription Fee:</span>
+          <span class="metadata-entry__value">
+            NGN {{ pendingInvoice?.amount | number }}
+          </span>
+        </div>
+      </div>
+
+      <div class="conteiner__footer">
+        <button class="btn btn-white" (click)="backToDashboard()">
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary no-margin"
+          [disabled]="!pendingInvoice"
+          (click)="payNow()"
+        >
+          Proceed to Pay
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-none" *ngIf="pendingInvoice">
+  <app-initiate-payment
+    [invoiceReference]="pendingInvoice.reference"
+    [invoiceId]="pendingInvoice.id"
+  >
+  </app-initiate-payment>
+</div>

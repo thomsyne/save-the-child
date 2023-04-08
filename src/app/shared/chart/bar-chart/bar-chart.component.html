@@ -1,0 +1,45 @@
+<div
+  class="bar-chart-container"
+  [id]="chartParameters.chartId"
+  style="position: relative"
+>
+  <div id="barChart">
+    <div class="custom-legends" *ngIf="position == 'top'"  >
+      <div
+        class="custom-legend"
+        *ngFor="let label of chartParameters.chartLabels; let idx = index"
+      >
+        <div
+          class="custom-legend__bar"
+          [style.backgroundColor]="chartParameters.chartColors[idx]"
+        ></div>
+        <span class="custom-legend__key text__bold">{{ label }}</span>
+      </div>
+    </div>
+    <apx-chart
+      [series]="barChartOptions?.series"
+      [chart]="barChartOptions?.chart"
+      [dataLabels]="barChartOptions?.dataLabels"
+      [plotOptions]="barChartOptions?.plotOptions"
+      [yaxis]="barChartOptions?.yaxis"
+      [legend]="barChartOptions?.legend"
+      [fill]="barChartOptions?.fill"
+      [stroke]="barChartOptions?.stroke"
+      [tooltip]="barChartOptions?.tooltip"
+      [xaxis]="barChartOptions?.xaxis"
+      [noData]="barChartOptions?.noData"
+    ></apx-chart>
+    <div class="custom-legends" *ngIf="position == 'bottom'"  >
+      <div
+        class="custom-legend"
+        *ngFor="let label of chartParameters.chartLabels; let idx = index"
+      >
+        <div
+          class="custom-legend__bar"
+          [style.backgroundColor]="chartParameters.chartColors[idx]"
+        ></div>
+        <span class="custom-legend__key text__bold">{{ label }}</span>
+      </div>
+    </div>
+  </div>
+</div>

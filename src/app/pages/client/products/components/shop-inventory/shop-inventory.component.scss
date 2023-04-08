@@ -1,0 +1,26 @@
+.shop {
+  display: flex;
+
+  &__data {
+    h2 {
+      margin: 0;
+    }
+  }
+  &__status {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+}
+
+.quantity-info{
+  background: #F9F9F9;
+  border-radius: 4px;
+  padding: 12px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

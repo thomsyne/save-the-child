@@ -1,0 +1,43 @@
+<section class="section-center-create">
+  <div class="form-central">
+    <div class="form-central__headings">
+      <h4 class="heading__4">Update Product</h4>
+      <span class="text__default"
+        >Update a single product or multiple products at once.</span
+      >
+    </div>
+
+    <div class="form-central__content">
+      <lib-loader></lib-loader>
+
+      <div class="form-central__form">
+        <div class="form-parent">
+          <div class="left">
+            <lib-dynamic-form
+              #ProductForm
+              [fieldset]="form"
+              [errors]="errors"
+            ></lib-dynamic-form>
+          </div>
+          <div class="right">
+            <app-image-upload
+              [existingFileUrls]="product?.imageUrls ? product.imageUrls : []"
+              (uploadComplete)="updateProducts($event)"
+            ></app-image-upload>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-central__content-actions">
+        <button class="btn btn-white" routerLink="/products">Cancel</button>
+        <button
+          class="btn btn-primary"
+          [disabled]="buttonDisabled === 'INVALID'"
+          (click)="uploadComponent.uploadFiles()"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

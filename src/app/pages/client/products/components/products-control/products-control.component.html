@@ -1,0 +1,18 @@
+<h1>My Products</h1>
+<span class="text-gray">Monitor sales reports, settlement reports and billing reports.</span>
+<div  class="cards">
+  <div  class="card" *ngFor="let control of controllers">
+    <img
+      [src]="control.img"
+      alt="map"
+      class="card-image"
+    />
+    <h5  class="heading__5 card-title">{{control.title}}</h5>
+    <span  class="card-description">
+      {{control.text}}
+    </span>
+    <a class="btn btn__sm btn-outline-primary" [routerLink]="control.route">
+      Open
+    </a>
+  </div>
+</div>

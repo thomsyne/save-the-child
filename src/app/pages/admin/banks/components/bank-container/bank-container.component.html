@@ -1,0 +1,29 @@
+<div  class="cards-container">
+    <div  class="container">
+  
+      <div class="reposition-breadcrumbs" *ngIf="!currentUrl?.includes('banks')">
+        <ul class="breadcrumbs-container">
+          <li
+            class="crumb"
+            style="display: block"
+            routerLink="/banks"
+            queryParamsHandling="preserve"
+          >
+            <a class="crumb-link">Banks</a>
+          </li>
+  
+          <li
+            class="crumb active-crumb"
+            *ngIf="currentUrl?.includes('create')"
+          >
+            <a class="crumb-link">Add Bank</a>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="" style="padding-top: 20px">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  

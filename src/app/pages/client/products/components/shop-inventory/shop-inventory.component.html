@@ -1,0 +1,128 @@
+<div class="horizontal-tab-wrapper">
+  <div class="table-bg">
+    <div class="button-layout">
+      <lib-filters
+        style="margin-right: auto"
+        [filters]="filters"
+        (filter)="setFilters($event)"
+      >
+      </lib-filters>
+    </div>
+
+    <div class="data-container" *ngIf="tableData$ | async as tableData">
+      <div *ngIf="tableData.length">
+        <!-- Table -->
+        <div class="table-container-mod">
+          <lib-dynamic-table
+            [records]="tableData$ | async"
+            [settings]="tableSettings"
+            [buttons]="buttonSettings"
+          ></lib-dynamic-table>
+        </div>
+
+        <!-- Pagination -->
+        <lib-pagination
+          [ngClass]="{ block: (count$ | async), none: !(count$ | async) }"
+          [totalElements]="count$ | async"
+          [pageIndex]="paginationValues.pageIndex"
+          [currentPage]="paginationValues.currentPage"
+          [paginationType]="paginationValues.paginationType"
+          (pageChange)="setPager($event)"
+        ></lib-pagination>
+
+        <!-- Download CSV -->
+        <lib-download-csv (downloadCsv)="generateCsv()"></lib-download-csv>
+      </div>
+
+      <lib-no-table-data *ngIf="!tableData.length"></lib-no-table-data>
+    </div>
+
+    <lib-skeleton-table
+      [numberOfColumns]="tableSettings.length"
+      *ngIf="!(tableData$ | async)"
+    ></lib-skeleton-table>
+  </div>
+</div>
+
+<lib-modal
+  *ngIf="showAddQuantityModal"
+  modalType="primary"
+  header="Increase Stock Of"
+  [subHeader]="itemToIncreaseQuanity.name"
+  buttonText="Update Quantity"
+  (cancel)="showAddQuantityModal = false"
+  (submit)="updateInventoryIncrease()"
+>
+  <lib-dynamic-form
+    #increaseQuantityFormRef
+    [fieldset]="increaseQuantityForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+  <div class="quantity-info text-gray">
+    <div>
+      <p>Current Quantity</p>
+      <p>{{ itemToIncreaseQuanity.quantity ?? 0 }}</p>
+    </div>
+    <div>
+      <p>New Quantity</p>
+      <p>
+        {{
+          itemToIncreaseQuanity.quantity
+            ? +itemToIncreaseQuanity.quantity +
+              +increaseQuantityFormRef.form.value["quantity"]
+            : +increaseQuantityFormRef.form.value["quantity"]
+        }}
+      </p>
+    </div>
+  </div>
+</lib-modal>
+
+<lib-modal
+  *ngIf="showReduceQuantityModal"
+  modalType="primary"
+  header="Decrease Stock Of"
+  [subHeader]="itemToReduceQuanity.name"
+  buttonText="Update Quantity"
+  (cancel)="showReduceQuantityModal = false"
+  (submit)="updateInventoryReduction()"
+>
+  <lib-dynamic-form
+    #reduceQuantityFormRef
+    [fieldset]="reduceQuantityForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+
+  <div class="quantity-info text-gray">
+    <div>
+      <p>Current Quantity</p>
+      <p>{{ itemToReduceQuanity.quantity ?? 0 }}</p>
+    </div>
+    <div>
+      <p>New Quantity</p>
+      <p>
+        {{
+          itemToReduceQuanity.quantity
+            ? +itemToReduceQuanity.quantity -
+              +reduceQuantityFormRef.form.value["quantity"]
+            : 0
+        }}
+      </p>
+    </div>
+  </div>
+</lib-modal>
+
+<lib-modal
+  *ngIf="showExpiryModal"
+  modalType="primary"
+  header="Add Expiry"
+  subHeader=""
+  buttonText="Add Expiry"
+  (cancel)="showExpiryModal = false"
+  (submit)="updateInventoryExpiryDate()"
+>
+  <lib-dynamic-form
+    #expiryDateFormRef
+    [fieldset]="expiryDateForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

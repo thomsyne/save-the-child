@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@ga/navigation": ["src/app/shared/navigation"],
+      "@ga/dynamic-table": ["src/app/shared/dynamic-table"],
+      "@ga/charts": ["src/app/shared/chart"],
+      "@ga/dynamic-form": ["src/app/shared/dynamic-form"],
+      "@ga/utility": ["src/app/shared/utility"],
+      "@ga/modal": ["src/app/shared/modal"],
+      "@ga/skeleton": ["src/app/shared/skeleton"],
+      "@ga/core": ["src/app/core"],
+      "@ga/file-upload": ["src/app/shared/file-upload"]
+    },
+    "lib": ["es2018", "dom"]
+  }
+}

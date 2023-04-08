@@ -1,0 +1,13 @@
+.section__role {
+  padding-top: 2rem;
+  padding-right: 20px;
+  border-right: 0.5px solid #DFDEDE;
+}
+.section__access {
+  max-height: 26rem;
+  overflow: scroll;
+
+  &__container {
+    padding-left: 20px;
+  }
+}

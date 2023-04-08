@@ -1,0 +1,31 @@
+<div  class="cards-container">
+  <div  class="container">
+
+    <div class="top-section flexed" *ngIf="currentUrl.includes('support')">
+      <div class="intro flex-1">
+        <h3 class="heading__4 no-margin">Support</h3>
+      </div>
+    </div>
+
+    <!-- tabs -->
+    <ul class="tabs">
+      <li
+        class="tab-item" [routerLink]="'/support'"
+        routerLinkActive="active"
+      >
+        Support
+      </li>
+      <!-- <li
+        *ngIf="isAdmin" class="tab-item"
+        [routerLink]="'/disputes'"
+        routerLinkActive="active"
+      >
+        Disputes
+      </li> -->
+    </ul>
+    
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

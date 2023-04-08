@@ -1,0 +1,83 @@
+<div class="business-information">
+  <div class="heading">
+    <h4 class="heading__4 no-margin-b">Business Details</h4>
+    <p class="text-gray text__small no-margin-t">
+      Please provide your business details to get started with RexRetail
+    </p>
+  </div>
+
+  <div class="form-central__form">
+    <lib-dynamic-form
+      #businessDataForm
+      [fieldset]="businessFormDetails"
+      [errors]="errors"
+    ></lib-dynamic-form>
+
+  </div>
+
+  <ng-container *ngIf="currentEntity?.countryCode?.includes('233')" >
+    <div class="heading">
+      <h4 class="heading__4 no-margin-b">File Uploads</h4>
+      <p class="text-gray text__small no-margin-t">
+        Please provide the necessary documents as stated below
+      </p>
+    </div>
+    <div style="height: auto;">
+      <lib-dynamic-form
+      #identityDataForm
+      [fieldset]="identityTypeForm"
+      [errors]="errors"
+    ></lib-dynamic-form>
+
+      <ng-container *ngFor="let field of uploadFields; let i = index">
+        <lib-file-upload
+          [uploadMetadata]="field"
+          (onFileSelected)="uploadDocument($event, field)"
+          (onFileDeleted)="onFileDeleted(field)"
+          [showFileUrl]="true"
+          [background]='"white"'
+        ></lib-file-upload>
+      </ng-container>
+    </div>
+  </ng-container>
+
+
+  <div class="bank-info">
+    <h4>Bank Information</h4>
+    <p>Enter Bank details to receive instant settlement.</p>
+  </div>
+  <div *ngIf="currentEntity?.countryCode?.includes('234')" class="form-central__form">
+    <app-account-lookup
+      (lookUpComplete)="getAccountDetails($event)"
+      (lookUpFormStatus)="getAccountLookupFormStatus($event)"
+    ></app-account-lookup>
+  </div>
+
+  <div *ngIf="currentEntity?.countryCode?.includes('233')" class="form-central__form">
+    <lib-dynamic-form
+      #bankDataForm
+      [fieldset]="bankInformationFormDetails"
+      [errors]="errors"
+    ></lib-dynamic-form>
+  </div>
+
+  <div class="business-information__button-container">
+    <button
+      class="btn business-information__prev-button"
+      (click)="goBack.emit()"
+    >
+      Back
+    </button>
+    <button
+      class="btn btn-primary"
+      [disabled]="
+        businessDataForm.form.invalid ||
+        !accountLookupFormStatus ||
+        saveBusInfoLoading
+      "
+      (click)="processForms()"
+    >
+      {{ saveBusInfoLoading ? "Loading..." : "Save & Proceed" }}
+    </button>
+  </div>
+</div>

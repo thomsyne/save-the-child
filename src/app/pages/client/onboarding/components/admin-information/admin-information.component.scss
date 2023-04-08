@@ -1,0 +1,25 @@
+.admin-information {
+  &__button-container {
+    // margin-top: 450px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn {
+    margin: 0;
+  }
+
+  &__prev-button {
+    background: transparent;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .admin-information {
+    &__button-container {
+      margin-top: 70px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

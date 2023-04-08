@@ -1,0 +1,87 @@
+
+<div class="r-title mt-4 mb-5">
+  <div class="">
+    <h2 class="no-margin">Order ID: {{(reportOrder$|async)?.orderNumber}}</h2>
+    <div class="details">
+      <p class="text-gray">Created: {{(reportOrder$|async)?.createdOn|date}}</p>
+      <p [ngClass]="(reportOrder$|async)?.paymentStatus == 'Success' ? 'badge--success' : 'badge--warn'" class="badge">
+        {{(reportOrder$|async)?.paymentStatus == 'Success' ? "Success" : "Failed"}}
+      </p>
+      </div>
+    </div>
+  </div>
+<div class="row">
+
+  <div class="row-col__md-4 overview">
+    <div class="overview__details">
+      <div class="overview__details__headers">
+        <p>Cashier</p>
+        <p>Customer</p>
+        <p>Paid With</p>
+        <p>Store</p>
+        <!-- display extra details for card transaction -->
+        <ng-container *ngIf="(reportOrder$|async)?.paymentMethod == 'Card'">
+           <p>Stan</p>
+           <p>RRN</p>
+           <p>Masked PAN</p>
+        </ng-container>
+        <!-- display transaction response on failed transaction -->
+        <ng-container *ngIf="(reportOrder$|async)?.paymentStatus == 'Failed'">
+          <p>Response Code</p>
+          <p>Message</p>
+        </ng-container>
+      </div>
+      <div class="overview__details__values">
+        <p>{{(reportOrder$|async)?.soldBy}}</p>
+        <p>{{(reportOrder$|async)?.customer}}</p>
+        <p>{{(reportOrder$|async)?.paymentMethod}}</p>
+        <p>{{(reportOrder$|async)?.store}}</p>
+        <!-- display extra details for card transaction -->
+        <ng-container *ngIf="(reportOrder$|async)?.paymentMethod == 'Card'">
+          <p>{{(reportOrder$|async)?.stan}}</p>
+          <p>{{(reportOrder$|async)?.retrievalRefNumber}}</p>
+          <p>{{(reportOrder$|async)?.maskedCardNumber}}</p>
+        </ng-container>
+        <!-- display transaction response on failed transaction -->
+        <ng-container *ngIf="(reportOrder$|async)?.paymentStatus == 'Failed'">
+          <p>{{(reportOrder$|async)?.responseCode}}</p>
+          <p>{{(reportOrder$|async)?.responseDescription}}</p>
+        </ng-container>
+      </div>
+    </div>
+
+
+    <h5 class="heading__5 pb-1" style="border-bottom: 0.5px solid #dfdede">
+      Sales Overview
+    </h5>
+    <div class="overview__details">
+      <div class="overview__details__headers">
+        <p>Initial Price</p>
+        <p>Discount</p>
+        <p>Final Price</p>
+      </div>
+      <div class="overview__details__values ">
+        <p>{{(reportOrder$|async)?.currency}} {{(reportOrder$|async)?.totalAmount}}</p>
+        <p>{{(reportOrder$|async)?.currency}} {{(reportOrder$|async)?.discount}}</p>
+        <p>{{(reportOrder$|async)?.currency}} {{(reportOrder$|async)?.totalAmount}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row-col__md-8 view">
+    <div class="view__title row">
+      <h5 class="heading__5 no-margin row-col__md-6">Product Name</h5>
+      <h5 class="heading__5 no-margin row-col__md-6">Price</h5>
+    </div>
+
+    <div class="view__detail">
+      <div
+        *ngFor="let item of (reportOrder$|async)?.items"
+        class="view__detail__row row pb-3"
+        style="border-bottom: 0.5px solid #dfdede"
+      >
+        <p class="no-margin row-col__md-6" style="padding-left: 24px;">{{item.productName}}</p>
+        <p class="no-margin row-col__md-6">{{(reportOrder$|async)?.currency}}  {{item.quantity * item.unitPrice}}</p>
+      </div>
+    </div>
+  </div>
+</div>

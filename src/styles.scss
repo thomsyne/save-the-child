@@ -1,0 +1,287 @@
+// Logo fix
+.sidenav-image {
+  height: 5rem;
+}
+
+.table-container-mod {
+  min-height: 263px;
+  max-height: 44vh;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.labelled-dropdown-container .labelled-dropdown .label-container img {
+  transform: rotate(360deg);
+}
+
+.none {
+  visibility: hidden !important;
+}
+
+.block {
+  visibility: visible !important;
+}
+
+.button-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+ul.breadcrumbs-container {
+  align-items: baseline;
+}
+
+.center-layout .form-central__content {
+  overflow: hidden;
+}
+
+.section-center-create {
+  $color-gray: #767171;
+  padding-bottom: 100px;
+
+  @mixin add_scrollbar($thumbColor: #888, $thumbColorHover: #555) {
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      // background: #f1f1f1;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $thumbColor;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: $thumbColorHover;
+    }
+  }
+
+  .form-central {
+    position: relative;
+
+    &__headings {
+      text-align: center;
+
+      h4 {
+        margin: 30px 0 5px 0;
+        padding: 0;
+      }
+
+      span {
+        color: $color-gray;
+      }
+    }
+
+    &__content {
+      width: 80%;
+      height: 40rem;
+      background-color: white;
+      padding: 30px 30px 30px 30px;
+      overflow-y: scroll;
+      position: relative;
+      @include add_scrollbar(#ccc, transparent);
+      border-radius: 8px;
+      margin: 0 auto;
+      margin-top: 2rem;
+
+      &-actions {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 10px 0;
+        right: 30px;
+        background-color: white;
+        display: flex;
+
+        button:nth-child(2) {
+          margin-left: auto;
+        }
+
+        .btn {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.col-lg {
+  background-color: #fff;
+  outline: none;
+  text-align: left;
+}
+.badge {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 100px;
+  width: max-content;
+  height: fit-content;
+
+  &--success {
+    color: #13a500;
+    background: #c8eac4;
+  }
+  &--warn {
+    color: #ca8c17;
+    background: #fdebca;
+  }
+}
+
+.initials-avatar {
+  color: #9c9898;
+  font-size: 1.5rem;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  border-radius: 100%;
+  background-color: #f0f0f0;
+  .avatar-text {
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+.btn-success {
+  background-color: #13a500;
+  color: white;
+}
+
+.btn-reject {
+  background: #f6aa1c;
+  color: white;
+}
+
+// Form fixes
+label.field.three input.field-input,
+label.field.three select.field-select {
+  border-radius: 4px !important;
+}
+
+.label.field.three input.field-input:focus,
+label.field.three input.field-input:valid,
+label.field.three select.field-select:focus,
+label.field.three select.field-select:valid {
+  border: 1px solid #ccc;
+}
+
+label.field textarea.field-textarea:focus,
+label.field textarea.field-textarea:valid {
+  border: 1px solid #ccc;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 10px 17px;
+  padding-top: 22px;
+  color: #9c9898;
+}
+
+label.field textarea.field-textarea:focus + span.field-placeholder,
+label.field textarea.field-textarea:valid + span.field-placeholder {
+  top: calc(-200px - -22px);
+  font-size: 0.7rem;
+  left: 19px;
+  color: #9c9898;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.sidenav-nav__nav-items hr {
+  border: 0.5px solid #e7e6e6;
+  margin-left: 18px;
+  margin-right: 9px;
+}
+
+.hidden {
+  display: none;
+}
+
+.donut-chart-label {
+  font-size: 16px;
+}
+
+.four {
+  line-height: 1.5;
+  background: white;
+  font-size: 0.9rem;
+  color: #9c9898;
+  outline: none;
+  border: none;
+  padding: 10px 17px;
+  padding-top: 22px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border 0.3s ease;
+
+  &.ng-valid.ng-touched {
+    border: 1px solid #54be47;
+  }
+}
+
+.field-container > .four:focus,
+.field-container > .four:not(:placeholder-shown) {
+  padding-top: 20px;
+  padding-bottom: 8px;
+}
+
+.field-container > .four ~ label {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+
+  font-size: 0.7rem;
+  padding: 14px 17px;
+  color: #9c9898;
+}
+
+.field-container > .four:focus ~ label,
+.field-container > .four:not(:placeholder-shown) ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.filter-container {
+  width: fit-content;
+}
+
+.labelled-dropdown-container {
+  z-index: 2;
+  white-space: nowrap;
+}
+
+main.layout-container {
+  background: unset;
+}
+
+// updates to design system
+
+// TODO::move everything below to the Design System
+.loader-container .loader {
+  background-image: url("./assets/icons/loader.svg") !important;
+}
+
+.flag {
+  position: fixed !important;
+  right: 1vw;
+}

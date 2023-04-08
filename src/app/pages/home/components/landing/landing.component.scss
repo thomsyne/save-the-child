@@ -1,0 +1,12 @@
+.landing {
+  background: white;
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+}
+
+.overlay-item {
+  height: 100%;
+  position: relative;
+}

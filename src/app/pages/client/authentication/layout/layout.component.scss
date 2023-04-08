@@ -1,0 +1,74 @@
+.auth-layout {
+  height: 100vh;
+  // background: url("https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__white__swirl__bg.svg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  display: flex;
+  //flex-direction: row;
+  align-items: center;
+  // gap: 8.5rem;
+
+  &__left-container {
+    margin: 52px 92px 76px 52px;
+    .auth-logo {
+      //position: absolute;
+      top: 27px;
+      left: 52px;
+    }
+    .img-container {
+      text-align: -webkit-center;
+      margin-top: 107px;
+      margin-bottom: 96px;
+    }
+  }
+
+  .col-7 {
+    height: inherit;
+    width: 53.3%;
+    background-color: #011A3C;
+    display: flex;
+    //align-items: center;
+    color: #ffffff;
+    position: relative;
+  }
+  .col-5 {
+    width: 46.7%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .auth-layout {
+    background: white;
+    gap: 0;
+    align-items: flex-start;
+
+    &__logo {
+      width: 65px;
+      margin-top: 52px;
+      margin-left: 1rem;
+    }
+
+    &__container {
+      box-shadow: none;
+      padding: 1rem;
+      width: fit-content;
+      max-width: 400px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .col-7 {
+    display: none !important;
+  }
+  .col-5 {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .img-container {
+    margin-top: 127px !important;
+    margin-bottom: 116px !important;
+  }
+}

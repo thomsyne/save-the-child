@@ -1,0 +1,16 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  [isDisabled]="form?.form?.invalid"
+  (cancel)="closeModal.emit()"
+  (submit)="editCustomer()"
+>
+  <lib-dynamic-form
+  *ngIf="displayForm"
+    #form
+    [fieldset]="editCustomerForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

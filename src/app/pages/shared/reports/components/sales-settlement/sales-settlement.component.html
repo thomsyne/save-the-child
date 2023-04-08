@@ -1,0 +1,51 @@
+<lib-loader></lib-loader>
+<section class="section-center-create">
+  <div class="form-central">
+
+    <div class="form-central__content">
+
+        <lib-file-upload
+          [uploadMetadata]="documentUploadMetadata"
+          (onFileSelected)="uploadDocument($event, documentUploadMetadata)"
+          [showFileUrl]="true"
+        ></lib-file-upload>
+
+        <div *ngIf="isUploadSuccessful" class="view">
+            <div class="view__title row">
+              <h5 class="heading__5 no-margin row-col__md-2">Order #</h5>
+              <h5 class="heading__5 no-margin row-col__md-2">Transaction ID</h5>
+              <h5 class="heading__5 no-margin row-col__md-2">Total Amount</h5>
+              <h5 class="heading__5 no-margin row-col__md-2">Order Date</h5>
+              <h5 class="heading__5 no-margin row-col__md-2">RRN</h5>
+              <h5 class="heading__5 no-margin row-col__md-2">Message</h5>
+            </div>
+
+            <div *ngIf="isUploadSuccessful" class="view__detail">
+              <div
+                class="view__detail__row row pb-3"
+                style="border-bottom: 0.5px solid #dfdede"
+                *ngFor="let result of resultTable; let i = index"
+              >
+                <p class="no-margin row-col__md-2" style="padding-left: 24px;">{{result.orderNumber || '-'}}</p>
+                <p class="no-margin row-col__md-2">{{result.transactionId}}</p>
+                <p class="no-margin row-col__md-2">{{result.totalAmount}}</p>
+                <p class="no-margin row-col__md-2">{{result.orderDate | date: 'medium'}}</p>
+                <p class="no-margin row-col__md-2">{{result.retrievalRefNumber}}</p>
+                <p class="no-margin row-col__md-2">{{result.message}}</p>
+              </div>
+            </div>
+          </div>
+
+      <div class="form-central__content-actions">
+        <button class="btn btn-white" (click)="resetAll()">Cancel</button>
+        <button
+          class="btn btn-primary"
+          [disabled]="false"
+          (click)="executeUpload()"
+        >
+          Upload File
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,213 @@
+
+
+<div  class="cards-container top-section" *ngIf="complaint$|async as complaint">
+  <div  class="container">
+
+    <div class="reposition-breadcrumbs">
+      <ul class="breadcrumbs-container">
+        <li
+          class="crumb"
+          style="display: block"
+          routerLink="/support"
+          queryParamsHandling="preserve"
+        >
+          <a class="crumb-link">Support</a>
+        </li>
+        <li class="crumb active-crumb">
+          <a class="crumb-link">{{complaint?.reference}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <section class="section-analysis top-section">
+      <div class="details-section row">
+        <div class="details-section_left row-col__md-4">
+          <div class="details-section--card">
+            <div class="details-section--card_header">
+              <h4 class="heading__4"> {{complaint.reference}}</h4>
+              <p> {{complaint.status}} </p>
+            </div>
+            <div class="metadata-container">
+              <div class="metadata-entry">
+                <span class="metadata-entry_name">Dispute Ref</span>
+                <span class="metadata-entry_value">
+                  {{complaint.reference}}
+                </span>
+              </div>
+              <div class="metadata-entry">
+                <span class="metadata-entry_name">Category</span>
+                <span class="metadata-entry_value">
+                  {{complaint.category}}
+                </span>
+              </div>
+              <div class="metadata-entry">
+                <span class="metadata-entry_name">Created</span>
+                <span class="metadata-entry_value">
+                  {{complaint.createdOn| date: 'medium'}}
+                </span>
+              </div>
+              <div class="metadata-entry">
+                <span class="metadata-entry_name">Resolved On</span>
+                <span class="metadata-entry_value">
+                  {{complaint.resolvedOn | date: 'medium'}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="upload-card">
+            <div class="upload-card__header">
+              <p class="upload-card_heading heading__4">Upload Images</p>
+              <a
+                class="upload-card_link btn btn-link no-padding no-margin"
+                (click)="upload.click()"
+              >
+                Add Image
+              </a>
+            </div>
+            <div
+              class="
+                file-upload-control
+                view
+                no-padding-l no-padding-r no-padding-t
+              "
+              *ngFor="
+                let item of complaint?.disputeAttachmentViewModel;
+                let i = index
+              "
+            >
+              <img
+                src="https://assetslogos.s3-eu-west-1.amazonaws.com/frontendassets/icons/icon__paper__clip.svg"
+                alt="file clip"
+                class="file-upload-control__image"
+              />
+              <div class="file-upload-control__name">
+                <span title=" item?.fileName || item?.reference ">
+                  item?.fileName || item?.reference
+                </span>
+              </div>
+              <a
+                class="
+                  btn btn-link
+                  file-upload-control__action
+                  no-padding no-margin-r
+                "
+                (click)="downloadFile(item.reference, i, item.fileName)"
+                >View</a
+              >
+            </div>
+            <input
+              type="file"
+              #upload
+              style="display: none"
+              multiple="true"
+            />
+          </div> -->
+          <div class="hightlight-card">
+            <p class="hightlight-card_heading heading__4">Request Highlight</p>
+            <div class="request-section">
+              <div class="request-indicators">
+                <img
+                  src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__indicators.svg"
+                  alt="image__indicators"
+                />
+              </div>
+    
+              <div class="request-dates">
+                <div class="section-details">
+                  <div class="item">
+                    <div class="item__header">Initiation Date</div>
+    
+                    <div class="item__sub-text">
+                       {{complaint?.createdOn | date: 'medium'}} 
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="section-details">
+                  <div class="item">
+                    <div class="item__header">Response Date</div>
+    
+                    <div class="item__sub-text">
+                       {{complaint?.resolvedOn ? (complaint?.resolvedOn | date: 'medium') : '--'}} 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="details-section--details row-col__md-6">
+          <div class="detail__head">
+            <span class="comments-section__heading">Requests Comments</span>
+            <ng-container *hasPermission="['CAN_RESOLVE_DISPUTE']">
+              <div class="actions" *ngIf="isAdmin">
+                <button class="btn btn-sm btn-reject" (click)="toggleRejectModal()">
+                  Reject
+                </button>
+                <button class="btn btn-sm btn-success" (click)="toggleResolveModal()">
+                  Resolve
+                </button>
+              </div>
+            </ng-container>
+          </div>
+          <div class="comments-section">
+            <p *ngIf="!complaint.commentViewModel.length">No comments to display</p>
+            <div
+              class="comments-section__details"
+              *ngFor="let comment of complaint?.commentViewModel"
+            >
+              <p class="comments-section__details_text">
+                 {{comment.comment }}
+              </p>
+              <div class="comments-section__details_time">
+                <span class="author">By:  {{comment.commentBy}} </span>
+                <span class="date"> {{comment?.createdOn | date: 'medium'}} </span>
+              </div>
+            </div>
+          </div>
+          <div class="comment-box">
+            <lib-dynamic-form #commentFormRef [fieldset]="commentForm"> </lib-dynamic-form>
+            <button class="comment-box__btn btn btn-primary" (click)="sendComment()">
+              Send Response
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+</div>
+
+
+<lib-modal
+  *ngIf="showRejectModal"
+  modalType="primary"
+  header="Reject This Complaint"
+  subHeader="This complaint would be closed and marked as rejected.
+    You can leave a description of why you’re rejecting this issue."
+  buttonText="Reject Complaint"
+  (cancel)="toggleRejectModal()"
+  (submit)="rejectComplaint()"
+>
+  <lib-dynamic-form
+    #rejectFormRef
+    [fieldset]="rejectForm"
+  ></lib-dynamic-form>
+</lib-modal>
+
+<lib-modal
+  *ngIf="showResolveModal"
+  modalType="primary"
+  header="Resolve This Complaint"
+  subHeader="This confirms that the complaint has been attended to and there is no longer any dispute."
+  buttonText="Resolve Complaint"
+  (cancel)="toggleResolveModal()"
+  (submit)="resolveComplaint()"
+>
+  <lib-dynamic-form
+    #resolveFormRef
+    [fieldset]="resolveForm"
+  ></lib-dynamic-form>
+</lib-modal>

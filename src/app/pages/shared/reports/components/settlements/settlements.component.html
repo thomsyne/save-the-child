@@ -1,0 +1,80 @@
+
+    <div class="form-central__content pl-4">
+      <h5 class="heading__5 ">
+        What We Paid You
+      </h5>
+      <div class="row" style="height: 350px;">
+        <div class="row-col__md-6">
+          <div class="row">
+            <div class="row-col__md-4 pr-3" style="border-right: 1px solid #f2f2f2">
+              <div class="set-container">
+                <h4 class="heading__4 ">
+                  {{(summary$|async)?.sumThisMonth|number | customcurrency}}
+                </h4>
+                <span class="text-gray text__default">
+                  Settlement <br> This Month
+                </span>
+              </div>
+            </div>
+            <div class="row-col__md-4 pr-3 pl-3" style="border-right: 0.5px solid #dfdede">
+              <div class="set-container">
+                <h4 class="heading__4 ">
+                  {{(summary$|async)?.sumThisYear|number | customcurrency}}
+                </h4>
+                <span class="text-gray text__default">
+                  Settlement <br> This Year
+                </span>
+              </div>
+            </div>
+            <div class="row-col__md-4 pr-3 pl-3">
+              <div class="set-container">
+                <h4 class="heading__4 ">
+                  {{(summary$|async)?.sumAllTime|number | customcurrency}}
+                </h4>
+                <span class="text-gray text__default">
+                  Settlement <br> All Time
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-col__md-6">
+          <div
+            class="row-col__md-6 settling-amount pl-3 pr-3"
+            style="border-left: 1px solid #f2f2f2; height: 100%;"
+            *ngIf="isUserMerchantAdmin"
+          >
+            <div class="cashback">
+              <div class="cashback-container">
+                <h4 class="headin__4 no-margin">Pending Settlements</h4>
+                <p class="text__default text-gray">
+                  What We Owe You: <b class="text-bold"> {{(balance$|async)?.availableBalance|number | customcurrency}}</b>
+                </p>
+                <button class="btn-btn__sm cashback__button cursor-pointer" (click)="toggleSettlementModal()">
+                  Request Settlement
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <ng-container *ngIf="balance$|async as balance">
+    <lib-modal
+      *ngIf="showRequestSettlementModal && (balance$|async)"
+      [modalType]="modalData.modalType"
+      [header]="modalData.header"
+      [subHeader]="modalData.subHeader"
+      [buttonText]="modalData.buttonText"
+      [isDisabled]="buttonDisabled"
+      (cancel)="toggleSettlementModal()"
+      (submit)="makeRequest(balance.availableBalance)"
+    >
+      <lib-dynamic-form
+        #requestFormRef
+        [fieldset]="optFormField"
+        [errors]="errors"
+      ></lib-dynamic-form>
+    </lib-modal>
+  </ng-container>

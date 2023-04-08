@@ -1,0 +1,89 @@
+<lib-loader></lib-loader>
+<section class="profile-display" *ngIf="!showProfileForm">
+
+  <div class="profile">
+    <div class="initials-avatar">
+      <h3 class="avatar-text">
+        {{(userData$|async)?.firstName[0]}}{{(userData$|async)?.lastName[0]}}
+      </h3>
+    </div>
+    <div class="profile__data">
+      <h2>{{(userData$|async)?.firstName}} {{(userData$|async)?.lastName}}</h2>
+      <div class="profile__status">
+        <p 
+          class="badge"
+          [ngClass]="(userData$|async)?.active ? 'badge--success' : 'badge--warn'"
+        >
+          {{(userData$|async)?.active ? 'Active' : 'In-active'}}
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="profile-details">
+  
+    <div class="left-details">
+      <div class="detail">
+        <p>First Name</p>
+        <h6 class="heading__6">{{(userData$|async)?.firstName}}</h6>
+      </div>
+      <div class="detail">
+        <p>Phone Number</p>
+        <h6 class="heading__6">{{(userData$|async)?.phoneNumber}}</h6>
+      </div>
+    </div>
+    <div class="right-details">
+      <div class="detail">
+        <p>Last Name</p>
+        <h6 class="heading__6">{{(userData$|async)?.lastName}}</h6>
+      </div>
+      <div class="detail">
+        <p>Email</p>
+        <h6 class="heading__6">{{(userData$|async)?.email}}</h6>
+      </div>
+    </div>
+  
+  </div>
+  
+  <button
+    (click)="displayForm()"
+    class="btn btn-primary profile-btn"
+  >
+    Edit Profile
+  </button>
+
+</section>
+
+<section class="profile-form row" *ngIf="showProfileForm">
+  <lib-dynamic-form
+  #profileForm
+  [fieldset]="profileFormData"
+  [errors]="errors"
+  >
+  </lib-dynamic-form>
+
+  <button
+    (click)="generateOTP()"
+    class="btn btn-primary profile-btn mt-5"
+    [disabled]="profileForm.form.invalid">
+  Save changes
+  </button>
+</section>
+
+<lib-modal
+  *ngIf="showOTPModal"
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  [isDisabled]="buttonDisabled"
+  (cancel)="showOTPModal = !showOTPModal"
+  (submit)="updateProfile()"
+>
+  <lib-dynamic-form
+    #OTPForm
+    [fieldset]="optFormField"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

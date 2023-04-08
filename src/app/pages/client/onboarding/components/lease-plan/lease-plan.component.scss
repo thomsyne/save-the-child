@@ -1,0 +1,53 @@
+.content {
+  height: 670px;
+  overflow: auto;
+
+  .subscription-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.form_button {
+  padding: 3.5%;
+  margin: 0;
+}
+
+.radio {
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #dfdede;
+  display: flex;
+  gap: 29px;
+  align-items: baseline;
+
+  padding: 22px;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    &:checked,
+    &:active {
+      background-color: #ed1c25;
+      border: 1px solid #ed1c25 !important;
+      &:focus {
+        border: 1px solid #ed1c25 !important;
+        box-shadow: none;
+      }
+    }
+    &:hover,
+    &:focus {
+      border: 1px solid #ed1c25 !important;
+      box-shadow: none;
+    }
+  }
+
+  &.selected {
+    border: 1px solid #ed1c25;
+    // background: hsla(357, 85%, 52%, 0.438);
+  }
+}
+
+.br-05 {
+  border-right: 0.5px solid #dfdede;
+}

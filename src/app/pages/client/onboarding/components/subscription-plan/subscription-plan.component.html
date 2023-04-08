@@ -1,0 +1,51 @@
+<div class="plan">
+  <div class="plan__details">
+    <!-- <app-outright-plan
+      *ngIf="plan == 'outright'"
+      [durationCost]="planData.fee"
+      [posCost]="posCost"
+      (onTotalReceived)="setTotal($event)"
+    ></app-outright-plan> -->
+
+    <app-outright-plan
+      *ngIf="plan === 'outright'"
+      [subPlans]="planData"
+      [posCost]="posCost"
+      (planSelected)="setTotal($event)"
+    ></app-outright-plan>
+
+    <app-mobile-plan
+      *ngIf="plan == 'mobile'"
+      [durationCost]="planData.fee"
+      (onTotalReceived)="setTotal($event)"
+      (changePlan)="goBack.emit()"
+    ></app-mobile-plan>
+
+    <app-lease-plan
+      *ngIf="plan == 'lease'"
+      [subPlans]="planData"
+      [posCost]="posCost"
+      (planSelected)="setTotal($event)"
+    ></app-lease-plan>
+  </div>
+
+  <div
+    class="plan__button-container"
+    [ngClass]="
+      plan == 'lease'
+        ? 'plan__button-container--sm-margin'
+        : 'plan__button-container--lg-margin'
+    "
+  >
+    <button class="btn plan__prev-button" (click)="goBack.emit()">
+      Previous
+    </button>
+    <button
+      class="btn btn-primary plan__next-button"
+      [disabled]="plan === 'lease' && !planDetails.planName"
+      (click)="proceed.emit(planDetails)"
+    >
+      Proceed
+    </button>
+  </div>
+</div>

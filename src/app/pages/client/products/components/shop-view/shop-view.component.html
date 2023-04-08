@@ -1,0 +1,46 @@
+<div class="shop" *ngIf="isShop">
+  <div class="initials-avatar">
+    <h3 class="avatar-text">{{(shop$|async).name|Initials}}</h3>
+  </div>
+  <div class="shop__data">
+    <h2>{{(shop$|async).name}}</h2>
+    <div class="shop__status">
+      <p class="text-gray">Created: {{(shop$|async).createdOn|date}}</p>
+      <p 
+        class="badge"
+        [ngClass]="(shop$|async).active ? 'badge--success' : 'badge--warn'"
+      >{{(shop$|async).active ? 'Active' : 'In-active'}}</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="">
+  <ul class="tabs">
+    <li
+      class="tab-item"
+      routerLinkActive="active"
+      [routerLink]="'/products/shops/' + id + '/transactions'"
+    >
+      Transactions
+    </li>
+    <li
+      class="tab-item"
+      routerLinkActive="active"
+      [routerLink]="'/products/shops/' + id + '/profile'"
+    >
+      My Shop Details
+    </li>
+    <li
+      class="tab-item"
+      routerLinkActive="active"
+      [routerLink]="'/products/shops/' + id + '/inventory'"
+    >
+      Inventory
+    </li>
+  </ul>
+</div>
+
+<div class="horizontal-tab-wrapper">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,104 @@
+<lib-loader></lib-loader>
+<section class="profile-display" *ngIf="!showBusinessForm">
+  <div class="profile-details">
+    <div class="left-details">
+      <div class="detail">
+        <p>Business Name</p>
+        <h6 class="heading__6">{{ (merchantData$ | async)?.name }}</h6>
+      </div>
+      <div class="detail">
+        <p>Business Address</p>
+        <h6 class="heading__6">{{ (merchantData$ | async)?.address ?? "" }}</h6>
+      </div>
+      <!-- <div class="detail">
+        <p>State</p>
+        <h6 class="heading__6">{{(merchantData$|async)?.name}}</h6>
+      </div> -->
+      <div class="detail">
+        <p>Currency</p>
+        <h6 class="heading__6">{{ (merchantData$ | async)?.currency }}</h6>
+      </div>
+      <div class="detail">
+        <p>Select Bank</p>
+        <h6 class="heading__6">{{ (merchantData$ | async)?.name }}</h6>
+      </div>
+      <div class="detail">
+        <p>Account Name</p>
+        <h6 class="heading__6">{{ (merchantData$ | async)?.accountName }}</h6>
+      </div>
+    </div>
+
+    <div class="right-details">
+      <div class="detail">
+        <p>Business Type</p>
+        <h6 class="heading__6">
+          {{ (merchantData$ | async)?.natureOfBusiness }}
+        </h6>
+      </div>
+      <div class="detail">
+        <p>Email</p>
+        <h6 class="heading__6">{{ (merchantData$ | async)?.contactEmail }}</h6>
+      </div>
+      <!-- <div class="detail">
+        <p>Country</p>
+        <h6 class="heading__6">{{(merchantData$|async)?.name}}</h6>
+      </div> -->
+      <div class="detail">
+        <p>Phone Number</p>
+        <h6 class="heading__6">
+          {{ (merchantData$ | async)?.contactPhoneNumber }}
+        </h6>
+      </div>
+      <div class="detail">
+        <p>Account Number</p>
+        <h6 class="heading__6">{{ (merchantData$ | async)?.accountNumber }}</h6>
+      </div>
+      <div class="detail">
+        <p>BVN</p>
+        <h6 class="heading__6">
+          {{ (merchantData$ | async)?.bankVerificationNumber }}
+        </h6>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="displayForm()" class="btn btn-primary profile-btn mt-5">
+    Edit Profile
+  </button>
+</section>
+
+<section class="profile-form row" *ngIf="showBusinessForm">
+  <lib-dynamic-form #form [fieldset]="businessForm" [errors]="errors">
+  </lib-dynamic-form>
+
+  <app-account-lookup
+    [accountDetails]="prefillData"
+    (lookUpComplete)="getAccountDetails($event)"
+    (lookUpFormStatus)="getAccountLookupFormStatus($event)"
+  ></app-account-lookup>
+
+  <button
+    class="btn btn-primary profile-btn mt-5"
+    [disabled]="form.form.invalid || loader.status || !accountLookupFormStatus"
+    (click)="generateOTP()"
+  >
+    Save changes
+  </button>
+</section>
+
+<lib-modal
+  *ngIf="showOTPModal"
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  [isDisabled]="buttonDisabled"
+  (cancel)="showOTPModal = !showOTPModal"
+  (submit)="validateBusinessInfoChange()"
+>
+  <lib-dynamic-form
+    #OTPForm
+    [fieldset]="optFormField"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

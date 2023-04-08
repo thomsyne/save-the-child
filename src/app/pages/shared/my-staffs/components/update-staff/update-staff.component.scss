@@ -1,0 +1,27 @@
+.section__role {
+  padding-top: 2rem;
+}
+.section__access {
+  max-height: 19rem;
+  overflow: scroll;
+}
+
+.section__cash {
+  width: 340px;
+  height: 100px;
+  background: #4C9AFF;
+  border-radius: 12px;
+  color: white;
+  padding: 30px 16px;
+
+  &__cont {
+    display: flex;
+    align-items: center;
+  }
+  h4 {
+    margin-top: 0;
+  }
+  &__btn {
+    color: #4C9AFF;
+  }
+}

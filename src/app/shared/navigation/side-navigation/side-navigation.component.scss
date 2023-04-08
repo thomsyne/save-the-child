@@ -1,0 +1,14 @@
+.sidenav-nav {
+    position: relative;
+    .powered-by {
+        position: absolute;
+        bottom: 10px;
+        left: 34px;
+        display: flex;
+        text-align: -webkit-center;
+
+        img {
+            object-fit: contain;
+        }
+    }
+}

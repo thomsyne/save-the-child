@@ -1,0 +1,61 @@
+
+section.section-dashboard-bar-container {
+
+  padding: 20px 20px 30px 20px;
+  background-color: white;
+  border-radius: 8px;
+
+}
+
+.bar-chart {
+
+  .headers {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  .title {
+    background-color: #ededed;
+    width: 200px;
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .volume {
+    background-color: #f9f9f9;
+    width: 100px;
+    height: 10px;
+    border-radius: 10px;
+  }
+
+  .chart-lines {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    color: #ededed;
+    // flex-direction: column;
+    .horizontal-lines {
+      height: 1px;
+      width: 100%;
+      background-color: #0000001f;
+      margin-bottom: 20px;
+    }
+
+    div + div {
+      margin-top: 10px;
+    }
+  }
+
+  .week-days {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+
+    span {
+      background-color: #f9f9f9;
+      height: 10px;
+      width: 80px;
+    }
+  }
+}

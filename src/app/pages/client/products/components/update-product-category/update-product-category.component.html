@@ -1,0 +1,13 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  (cancel)="closeModal.emit()"
+  (submit)="updateProductCategory()"
+>
+  <lib-dynamic-form
+    [fieldset]="updateCategoryForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

@@ -1,0 +1,67 @@
+<div class="terms-of-use-modal-overlay">
+  <div class="terms-of-use" #termsModal>
+    <div class="terms-of-use__content">
+      <div class="terms-of-use__body">
+        <section style="height: 50vh; overflow: auto">
+          <app-terms-data></app-terms-data>
+        </section>
+        <!-- <div class="terms-of-use__header">
+          <h2 class="terms-of-use__header__title">RexRetail Terms Of Use</h2>
+          <p class="terms-of-use__header__subtitle text-gray">Updated October, 2021</p>
+        </div>
+        <section class="body__section">
+          <h4 class="body__section__title">
+            Section 1 -Introduction, Definitions and Interpretations
+          </h4>
+          <h6 class="body__section__subtitle">
+            1.1 Introduction
+          </h6>
+          <p class="body__section__text">
+            1.1 Welcome to the Platform (as the term is hereinafter defined). The use of
+            the Platform is subject to the terms and conditions set out herein (the “Terms &
+            Conditions”). The Terms & Conditions form part of the Contract (as the term is
+            hereinafter defined) that governs Access to and the use of the Platform, as well as
+            the use of the Devices (as the term is hereinafter defined) by the Subscriber
+            (as the term is hereinafter defined). The Subscriber is advised to read the Terms
+            & Conditions carefully. By signing the acceptance form below, the Subscriber agrees
+            to comply with and be bound by the Terms & Conditions and other parts of the Contract
+            (as same may be referenced here).
+          </p>
+
+          
+        </section> -->
+
+        <div class="body__disclaimer">
+          <p class="body__disclaimer__message">
+            Please note that by clicking submit, you are agreeing to the Terms
+            and Conditions to use this product Rex Retail.
+          </p>
+          <div class="body__disclaimer__confirmation">
+            <div class="form-group">
+              <input
+                id="checked"
+                type="checkbox"
+                (change)="checked = $event.target.checked"
+              />
+              <label for="checked">
+                I Hereby Agree To The Terms And Conditions Of The Product,
+                RexRetail.
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="terms-of-use__footer">
+          <div></div>
+          <button
+            class="btn btn-primary"
+            (click)="onSubmit()"
+            [disabled]="!checked"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

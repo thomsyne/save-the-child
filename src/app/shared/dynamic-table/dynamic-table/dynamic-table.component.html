@@ -1,0 +1,82 @@
+<!--
+  Here we loop through the ColumnMap config and set the value of the 	<th> element to the be the value of the header property. We also show 	or hide the Action or Actions table head text based on the buttons input.
+
+  For the <tr> we loop through the records data, then for each record we 	loop 	through the ColumnMap config and set the value of the 		<td> element to the be the value of the primaryKey property. We also 	add the appStyleCell directive and the formatCell pipe to give use more 	flexibility. The <td> buttons are also populated based on the buttons 	input.
+ -->
+
+<table class="data-table">
+  <thead class="data-table__headings">
+    <tr>
+      <th class="checkbox" *ngIf="allowsSelection">
+        <input
+          class="checkbox"
+          type="checkbox"
+          [(ngModel)]="masterSelected"
+          name="master_selected"
+          value="master_selected"
+          (change)="checkUncheckAll()"
+        />
+      </th>
+      <th *ngFor="let map of columnMaps">{{ map.header }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="data-table__body">
+    <tr class="data-table__row" *ngFor="let record of records">
+      <td *ngIf="allowsSelection">
+        <input
+          class="checkbox"
+          type="checkbox"
+          [(ngModel)]="record.isChecked"
+          name="record_id"
+          [value]="record?.id"
+          (change)="isAllSelected()"
+          [disabled]="masterSelected"
+        />
+      </td>
+      <td
+        class="data-table__row-col"
+        *ngFor="let map of columnMaps"
+        [appStyleCell]="record[map.primaryKey]"
+        [key]="map.primaryKey"
+      >
+        {{ record[map.primaryKey] | formatCell: map.format }}
+      </td>
+      <!-- *ngIf="buttons.length" -->
+      <td
+        class="data-table__row-col hovered dropdown-container"
+        *ngIf="buttons.length > 1"
+      >
+        <img
+          src="https://assetslogos.s3-eu-west-1.amazonaws.com/frontendassets/icons/icon__dotted__menu.svg"
+          alt="menu"
+          style="transform: scale(0.8)"
+        />
+        <div class="dropdown">
+          <div
+            class="dropdown-item {{ but.class }}"
+            *ngFor="let but of buttons"
+            [class.d-none]="but.condition ? !but.condition(record) : false"
+            (click)="bC(record, but.func, but.params)"
+          >
+            {{ but.title }}
+          </div>
+        </div>
+      </td>
+      <td class="data-table__row-col" *ngIf="buttons.length == 1">
+        <button
+          *ngFor="let but of buttons"
+          [class]="but.class.join(' ')"
+          (click)="bC(record, but.func, but.params)"
+          [class.d-none]="but.condition ? !but.condition(record) : false"
+        >
+          {{ but.title }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
+  Refeerence: Thomas Rundle - https://medium.com/@ct7/building-a-reusable-table-layout-for-your-angular-2-project-adf6bba3b498
+ -->

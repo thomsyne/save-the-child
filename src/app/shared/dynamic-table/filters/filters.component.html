@@ -1,0 +1,82 @@
+<div class="filter-container">
+  <!-- Button -->
+  <button
+    class="btn btn-secondary flexed icon-append filter-button"
+    style="margin: 0; margin-bottom: 1rem"
+    [class.active]="showFilter"
+    (click)="showFilter = !showFilter"
+  >
+    Filter Table
+  </button>
+
+  <!-- Tags -->
+  <div
+    class="tag filter"
+    *ngFor="let tag of tagList"
+    style="margin-bottom: 1rem"
+  >
+    <div class="tag-content">
+      <span class="tag-text"> {{ tag.text | titlecase }} </span>
+      <img
+        src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__cancel__active.svg"
+        alt=""
+        class="tag-action"
+        (click)="clearField(tag.id)"
+      />
+    </div>
+  </div>
+
+  <!-- Filter Forms -->
+  <div class="filter-content" *ngIf="showFilter">
+    <form [formGroup]="filterForm">
+      <div class="row">
+        <div class="row-col__md-6" *ngFor="let fil of filters">
+          <!-- Text Field -->
+          <div class="filter-group" *ngIf="fil.type === 0">
+            <label class="filter-group-label">{{ fil.displayName }}</label>
+            <input
+              type="text"
+              class="filter-group-input"
+              formControlName="{{ fil.filterName }}"
+            />
+          </div>
+
+          <!-- Select Field -->
+          <div class="filter-group" *ngIf="fil.type === 1">
+            <label class="filter-group-label">{{ fil.displayName }}</label>
+            <select
+              class="filter-group-input"
+              formControlName="{{ fil.filterName }}"
+            >
+              <option value="" disabled>Choose...</option>
+              <option
+                *ngFor="let val of fil.options | keyvalue"
+                value="{{ val.value }}"
+              >
+                {{ val.key }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Date Field -->
+          <div class="filter-group" *ngIf="fil.type === 2">
+            <label class="filter-group-label">{{ fil.displayName }}</label>
+            <input
+              type="date"
+              class="filter-group-input"
+              formControlName="{{ fil.filterName }}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="btn-group send-right">
+        <button class="btn btn__sm btn-transparent" (click)="clearFilter()">
+          Clear Filters
+        </button>
+        <button class="btn btn__sm btn-primary" (click)="applyFilters()">
+          Apply Filters
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

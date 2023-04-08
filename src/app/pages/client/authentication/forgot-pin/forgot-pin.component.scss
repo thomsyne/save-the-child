@@ -1,0 +1,27 @@
+.login {
+
+  a {
+    color: #767171;
+    display: flex;
+    cursor: pointer;
+  }
+  &__password {
+    margin: 0 0 32px;
+    color: var(--color-primary);
+    justify-content: flex-end;
+  }
+
+  &__signup {
+    gap: 10px;
+    margin: 15px 0 0;
+    text-decoration: none;
+    justify-content: flex-start;
+    span {
+      color: var(--color-primary);
+    }
+  }
+  &__button {
+    width: 100%;
+    margin: 0;
+  }
+}

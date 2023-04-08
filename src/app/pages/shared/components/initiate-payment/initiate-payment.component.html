@@ -1,0 +1,8 @@
+<button
+  id="initiate-pay-btn"
+  class="btn btn-primary"
+  (click)="initiatePayment()"
+  [disabled]="isLoading"
+>
+  {{ isLoading ? "Loading..." : "Make Payment" }}
+</button>

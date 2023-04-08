@@ -1,0 +1,58 @@
+<div class="cards-container">
+  <div class="container">
+
+    <div class="reposition-breadcrumbs" *ngIf="currentUrl !== 'staff'">
+      <ul class="breadcrumbs-container">
+        <li
+          class="crumb"
+          style="display: block"
+          routerLink="/staff"
+          queryParamsHandling="preserve"
+        >
+          <a class="crumb-link">My {{(title$|async)}}</a>
+        </li>
+    
+        <li
+          class="crumb active-crumb"
+          *ngIf="currentUrl.includes('manage') && !currentUrl.includes('manager')">
+          <a class="crumb-link">My {{(title$|async)}} List</a>
+        </li>
+
+        <ng-container *ngIf="currentUrl.includes('edit')">
+          <li class="crumb" routerLink="/staff/manage" queryParamsHandling="preserve">
+            <a class="crumb-link">My {{(title$|async)}} List</a>
+          </li>
+          <li class="crumb active-crumb">
+            <a class="crumb-link">Edit</a>
+          </li>
+        </ng-container>
+
+    
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('permissions')">
+          <a class="crumb-link">{{(title$|async)}} Roles</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'observe'">
+          <a class="crumb-link">Observe My {{(title$|async)}}</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'create-role'">
+          <a class="crumb-link">Create Role</a>
+        </li>
+        <!-- <li class="crumb active-crumb" *ngIf="currentUrl.includes('update-role')">
+          <a class="crumb-link">Update Role</a>
+        </li> -->
+        <ng-container *ngIf="currentUrl.includes('update-role')">
+          <li class="crumb" routerLink="/staff/permissions" queryParamsHandling="preserve">
+            <a class="crumb-link">{{(title$|async)}} Roles</a>
+          </li>
+          <li class="crumb active-crumb">
+            <a class="crumb-link">Update Role</a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

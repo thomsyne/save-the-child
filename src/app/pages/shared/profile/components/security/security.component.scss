@@ -1,0 +1,18 @@
+.profile-display {
+  background: white;
+  padding: 50px;
+}
+
+.profile-form {
+  width: 450px;
+}
+
+.profile-btn {
+  width: 100%
+}
+
+@media (max-width: 500px) {
+  .profile-display {
+    padding: 0;
+  }
+}

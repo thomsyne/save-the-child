@@ -1,0 +1,56 @@
+.center-layout .form-central__content {
+    width: 350px;
+    margin: auto;
+    margin-top: 1rem;
+  }
+  
+  .head__status {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+  
+  .rexpay-sub {
+    background: #f9f9f9;
+    border-radius: 4px;
+    padding: 0 8px;
+  
+    &__detail {
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+  
+      &__head {
+      }
+      &__data {
+        p {
+          text-align: end;
+        }
+      }
+    }
+  
+    &__dat {
+      padding: 1.2rem 0 0;
+      display: flex;
+      justify-content: space-between;
+  
+      p {
+        margin: 0;
+      }
+  
+      &.no-p {
+        padding: 0;
+      }
+    }
+    hr {
+      margin: 1.5rem 0;
+    }
+    &__upgrade {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  

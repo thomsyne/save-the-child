@@ -1,0 +1,25 @@
+<div class="top-section flexed mb-3">
+    <div class="intro flex-1">
+      <h3 class="heading__4 no-margin">Sales Report</h3>
+      <span class="text__default text-dashboard-gray sub-text">
+        Here you monitor your sales report.
+      </span>
+    </div>
+  </div>
+
+  <div class="">
+    <ul class="tabs">
+      <li class="tab-item" routerLinkActive="active" routerLink="/reports/sales">Dashboard</li>
+      <li class="tab-item" routerLinkActive="active" routerLink="/reports/sales-reports">
+        Full Breakdown
+      </li>
+      <li *ngIf="isAdmin" class="tab-item" routerLinkActive="active" routerLink="/reports/sales-settlement">
+        Manual Settlement
+      </li>
+    </ul>
+
+
+    <div class="horizontal-tab-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>

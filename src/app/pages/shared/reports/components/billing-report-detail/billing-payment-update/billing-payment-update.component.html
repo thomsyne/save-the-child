@@ -1,0 +1,14 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  [isDisabled]="buttonDisabled"
+  (cancel)="selectPayment()"
+  (submit)="selectPayment()"
+>
+  <lib-dynamic-form
+    [fieldset]="paymentUpdateForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

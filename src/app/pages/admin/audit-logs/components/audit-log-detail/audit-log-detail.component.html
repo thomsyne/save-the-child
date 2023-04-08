@@ -1,0 +1,162 @@
+<div class="cards-container">
+  <div class="container">
+
+      <div class="row">
+        <div class="details-section--card row-col__md-5">
+          <div class="details-section--card_header">
+            <h4 class="heading__4">Audit Details</h4>
+            <p> Here is a full breakdown of the selected activity</p>
+          </div>
+          <div class="metadata-container">
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Created</span>
+              <span class="metadata-entry_value">
+                {{(logDetails$?.createdOn | date: 'medium') || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">ID</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.id || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Function Type</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.functionType || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Action Type</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.actionType || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Severity Type</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.severityLevel || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Old Value</span>
+              <span class="metadata-entry_value">
+                {{'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Newly Modified Value</span>
+              <span class="metadata-entry_value">
+                {{ 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Affected User</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.affectedUser || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Modified By</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.modifiedBy || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Last Login Date and Time</span>
+              <span class="metadata-entry_value">
+                {{(logDetails$?.lastLogin | date: 'medium') || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">Source Agent</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.sourceAgent || 'None'}}
+              </span>
+            </div>
+            <div class="metadata-entry">
+              <span class="metadata-entry_name">IP Address</span>
+              <span class="metadata-entry_value">
+                {{logDetails$?.ipAddress || 'None'}}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="transaction row-col__md-7 pl-5">
+          <div class="transaction__header">
+            <p class="text__default text-gray">Audit Log Date Highlight</p>
+          </div>
+
+          <div class="hightlight-card">
+            <div class="hightlight-card__section">
+              <div class="hightlight-card__indicators">
+                <img src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__indicators.svg"
+                  alt="image__indicators" />
+              </div>
+
+              <div class="hightlight-card__section__dates">
+                <div class="item">
+                  <div class="item__header text-gray text__small">Modified Date and Time</div>
+                  <div class="item__sub-text text-gray text__small">
+                    {{logDetails$?.modifiedOn ? (logDetails$?.modifiedOn | date: 'medium' ) : "--"}}
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div class="item__header text-gray text__small">Last Modified Date and Time</div>
+                  <div class="item__sub-text text-gray text__small">
+                    {{logDetails$?.lastModifiedOn ? (logDetails$?.lastModifiedOn | date: 'medium' ) : "--"}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="newData" class="view">
+            <div class="view__title row">
+              <h5 class="heading__5 no-margin row-col__md-6">New Data</h5>
+              <h5 class="heading__5 no-margin row-col__md-6">Old Data</h5>
+            </div>
+
+            <div class="view__detail">
+              <div
+                class="view__detail__row row pb-3"
+                style="border-bottom: 0.5px solid #dfdede"
+              >
+
+              <div class="no-margin row-col__md-6 view__detail__row__json" [innerText]="newData" style="padding-left: 9px;"></div>
+              <div class="no-margin row-col__md-6 view__detail__row__json" [innerText]="oldData"></div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- <div *ngIf="newData" class="view">
+            <div class="view__title row">
+              <h5 class="heading__5 no-margin row-col__md-4">Parameter</h5>
+              <h5 class="heading__5 no-margin row-col__md-4">New Value</h5>
+              <h5 class="heading__5 no-margin row-col__md-4">Old Value</h5>
+            </div>
+
+            <div class="view__detail">
+              <div
+                class="view__detail__row row pb-3"
+                style="border-bottom: 0.5px solid #dfdede"
+                *ngFor="let value of valueKeys; let i = index"
+              >
+                <p class="no-margin row-col__md-4" style="padding-left: 24px;">{{value}}</p>
+                <p class="no-margin row-col__md-4">{{newData[value]}}</p>
+                <p class="no-margin row-col__md-4">{{oldData[value]}}</p>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+
+
+
+
+  </div>
+</div>

@@ -1,0 +1,37 @@
+.profile-display {
+  background: white;
+  padding: 50px;
+}
+
+.profile-details {
+  display: flex;
+  gap: 100px;
+
+  .left-details, .right-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h6 {
+      margin: 0;
+    }
+  }
+}
+
+.profile-form {
+  width: 80%;
+}
+
+.profile-btn {
+  width: 300px;
+}
+
+@media (max-width: 500px) {
+  .profile-display {
+    padding: 0;
+  }
+  .profile-details {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

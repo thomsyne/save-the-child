@@ -1,0 +1,25 @@
+.login {
+  width: 60%;
+  margin: auto;
+
+  a {
+    color: #767171;
+    display: flex;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  &__signup {
+    gap: 10px;
+    margin: 15px 0 0;
+    text-decoration: none;
+    justify-content: center;
+    span {
+      color: var(--color-primary);
+    }
+  }
+  &__button {
+    width: 100%;
+    margin: 0;
+  }
+}

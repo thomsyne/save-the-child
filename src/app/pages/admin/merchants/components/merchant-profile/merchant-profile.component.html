@@ -1,0 +1,118 @@
+<div class="analysis-card">
+  <div class="row no-margin-b" *ngIf="displayForm === true">
+    <div class="row-col__lg-8">
+      <lib-dynamic-form
+        #mainMerchantForm
+        [fieldset]="merchantForm"
+        [errors]="errors"
+      ></lib-dynamic-form>
+
+      <button
+      (click)="updateMerchant()"
+        class="btn btn__lg btn-primary no-margin"
+        style="width: 50%;"
+        [disabled]="mainMerchantForm.form.invalid"
+      >
+        Save Changes
+      </button>
+    </div>
+
+    <div class="row-col__lg-4 profile">
+      <div class="profile__buttons">
+        <button
+          class="btn btn__sm suspend"
+          (click)="showStatusChangeModal = !showStatusChangeModal"
+        >
+          {{(merchant$|async)?.active ? "Suspend" : "Activate"}} Merchant
+        </button>
+        <button
+          [disabled]="pinResetLoading"
+          class="btn btn__sm btn-primary no-margin-r"
+          (click)="resetAnpPinAndPassword()"
+        >
+          Reset Pin
+        </button>
+      </div>
+
+      <div class="profile__settings">
+        <div class="sub-status">
+          <p class="text-gray">Subscription Settings</p>
+          <div class="sub-status__box">
+            <div class="sub-status__content">
+              <h6 class="heading__6 no-margin-b" *ngIf="(merchant$|async)?.lastPaymentDate">
+                {{(merchant$|async)?.lastPaymentDate|date: 'medium'}}
+              </h6>
+              <h6 class="heading__6 no-margin-b" *ngIf="!(merchant$|async)?.lastPaymentDate">
+                N/A
+              </h6>
+              <div class="sub-status__state">
+                <div class="badge text-success">
+                  Active
+                </div>
+              </div>
+              <p>
+                Last Payment Due Date
+              </p>
+            </div>
+          </div>
+          <div class="sub-status__box sub-status__box--next">
+            <div class="sub-status__content">
+              <h6 class="heading__6 no-margin-b">
+                {{(merchant$|async)?.nextPaymentDate|date: 'medium'}}
+              </h6>
+              <p>
+                Next Payment Due Date
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-actions mt-3">
+        <lib-dynamic-form
+          #subscriptionMerchantSubForm
+          [fieldset]="merchantSubForm"
+          [errors]="errors"
+        ></lib-dynamic-form>
+        <button
+          (click)="updateSubPlan()"
+          class="btn btn__lg btn-primary no-margin-r"
+          [disabled]="subscriptionMerchantSubForm.form.invalid"
+        >
+          Save
+        </button>
+      </div>
+
+      <div *ngIf="didUploadDocument" class="documents-wrapper" >
+        <h4>Business Registration Documents</h4>
+        <div *ngFor="let document of documentsArray" class="documents-wrapper__document-download">
+          <ng-container *ngIf="document?.value" >
+            <span>{{document?.name}}</span>
+            <button
+            (click)="viewDownload(document?.value)"
+            class="btn btn__sm btn-primary no-margin-r"
+          >
+            View
+          </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<lib-modal
+  *ngIf="showStatusChangeModal"
+  [modalType]="merchantStatusModalData.modalType"
+  [header]="merchantStatusModalData.header"
+  [buttonText]="merchantStatusModalData.buttonText"
+  [isDisabled]="buttonDisabled"
+  (cancel)="showStatusChangeModal = !showStatusChangeModal"
+  (submit)="changeMerchantStatus()"
+>
+  <p>
+    You are about to {{(merchant$|async)?.active ? "Suspend" : "Activate"}}
+    {{(merchant$|async)?.name}}
+  </p>
+</lib-modal>

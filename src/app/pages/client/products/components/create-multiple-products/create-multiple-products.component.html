@@ -1,0 +1,46 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  (cancel)="toggleShowProductCreateOptionModal()"
+  (submit)="toggleShowProductCreateOptionModal()"
+>
+
+<div class="multiple" *ngIf="!uploadFinished">
+  <button class="multiple__btn" (click)="upload.click()">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+    </svg>
+    Upload Bulk Products CSV
+  </button>
+  <input
+    type="file"
+    #upload
+    style="display: none"
+    (change)="addAttachment($event)"
+    accept=".csv"
+  />
+  <p>Download Bulk creation template <span (click)="generateCSV()">here.</span></p>
+</div>
+
+<div *ngIf="uploadFinished">
+  <h4 class="heading__5 text-center">Upload Status</h4>
+
+  <h5 class="mb-2 heading__5">
+    {{ uploadResponse.numberOfSuccess }} products created sucessfully
+  </h5>
+  <h5 *ngIf="uploadResponse.numberOfFailed > 0" class="mb-4 heading__5">
+    {{ uploadResponse.numberOfFailed }} products not created
+  </h5>
+
+  <div *ngIf="uploadResponse.numberOfFailed > 0">
+    <h5 class="text-center heading__5">Here's Why</h5>
+    <p class="text__default">
+      {{ uploadResponse.failureMessage }}
+    </p>
+  </div>
+</div>
+
+</lib-modal>
+

@@ -1,0 +1,32 @@
+.form-parent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  height: 37rem;
+  overflow-y: auto;
+  width: 48%;
+}
+.right {
+  height: 37rem;
+  background-color: #f7f7f7;
+
+  text-align: center;
+  width: 48%;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .form-parent {
+    flex-direction: column;
+  }
+
+  .left {
+    height: auto;
+  }
+  .left, .right {
+    width: 100%;
+    margin-top: 2rem;
+  }
+}

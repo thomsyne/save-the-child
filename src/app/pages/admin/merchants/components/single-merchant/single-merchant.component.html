@@ -1,0 +1,48 @@
+<div class="top-section flexed mb-4">
+  <div class="intro flex-1">
+    <h3 class="heading__4 no-margin">Merchant Profile</h3>
+  </div>
+</div>
+
+<div class="">
+  <ul class="tabs">
+    <li
+      class="tab-item"
+      routerLinkActive="active"
+      queryParamsHandling="preserve"
+      [routerLink]="'/merchants/' + id + '/profile'"
+    >
+      Profile
+    </li>
+    <li
+      class="tab-item"
+      routerLinkActive="active"
+      queryParamsHandling="preserve"
+      [routerLink]="'/merchants/' + id + '/sales'"
+    >
+      Sales Report
+    </li>
+    <li
+      class="tab-item"
+      routerLinkActive="active"
+      queryParamsHandling="preserve"
+      [routerLink]="'/merchants/' + id + '/settlements'"
+    >
+      Settlement Reports
+    </li>
+    <li
+      class="tab-item"
+      routerLinkActive="active"
+      queryParamsHandling="preserve"
+      [routerLink]="'/merchants/' + id + '/billings'"
+    >
+      Billing Reports
+    </li>
+  </ul>
+
+
+  <div class="horizontal-tab-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

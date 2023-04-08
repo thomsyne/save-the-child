@@ -1,0 +1,52 @@
+<div class="top-section flexed mb-3">
+  <div class="intro flex-1">
+    <h3 class="heading__4 no-margin">Cashier Reports</h3>
+    <span class="text__default text-dashboard-gray sub-text">
+      Monitor Performance reports on the cashiers in your shops
+    </span>
+  </div>
+</div>
+
+<div class="table-bg">
+  <div class="button-layout">
+    <lib-filters
+      style="margin-right: auto"
+      [filters]="filters"
+      (filter)="setFilters($event)"
+    >
+    </lib-filters>
+  </div>
+
+  <div class="data-container" *ngIf="tableData$ | async as tableData">
+    <div *ngIf="tableData.length">
+      <!-- Table -->
+      <div class="table-container-mod">
+        <lib-dynamic-table
+          [records]="tableData$ | async"
+          [settings]="tableSettings"
+          [buttons]="buttonSettings"
+        ></lib-dynamic-table>
+      </div>
+
+      <!-- Pagination -->
+      <lib-pagination
+        [ngClass]="{ block: (count$ | async), none: !(count$ | async) }"
+        [totalElements]="count$ | async"
+        [pageIndex]="paginationValues.pageIndex"
+        [currentPage]="paginationValues.currentPage"
+        [paginationType]="paginationValues.paginationType"
+        (pageChange)="setPager($event)"
+      ></lib-pagination>
+
+      <!-- Download CSV -->
+      <lib-download-csv (downloadCsv)="generateCsv()"></lib-download-csv>
+    </div>
+
+    <lib-no-table-data *ngIf="!tableData.length"></lib-no-table-data>
+  </div>
+
+  <lib-skeleton-table
+    [numberOfColumns]="tableSettings.length"
+    *ngIf="!(tableData$ | async)"
+  ></lib-skeleton-table>
+</div>

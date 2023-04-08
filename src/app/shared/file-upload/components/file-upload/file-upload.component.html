@@ -1,0 +1,40 @@
+<div class="file-upload-control" [class.white-bg]="background == 'white'" [class.bg-white]="file">
+  <img
+    src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__paper__clip.svg"
+    alt="file clip"
+    class="file-upload-control__image"
+  />
+  <div class="file-upload-control__name">
+    <span title="{{ uploadMetadata.label || file?.name || 'Browse Files' }}">{{
+      uploadMetadata.label || file?.name || "Browse Files"
+    }}</span>
+  </div>
+  <button
+    class="btn btn-white file-upload-control__action no-margin-r"
+    (click)="selectFile()"
+    *ngIf="!file && !fileUrl"
+  >
+    Upload
+  </button>
+
+  <a
+    class="btn btn-link no-margin-r no-margin-l pr-2"
+    (click)="viewFile()"
+    *ngIf="fileUrl"
+    >View</a
+  >
+  <img
+    src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__grey__trash.svg"
+    class="mr-2 bdr-left-thin pl-2 bdr-color-gray hovered"
+    *ngIf="fileUrl || file"
+    (click)="deleteFile($event)"
+    alt="delete icon"
+  />
+</div>
+
+<lib-view-file
+  [filename]="file!!.name"
+  [file]="fileToDisplay"
+  *ngIf="showFile"
+  (closeModal)="showFile = false"
+></lib-view-file>

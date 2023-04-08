@@ -1,0 +1,14 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  [isDisabled]="buttonDisabled"
+  (cancel)="closeModal.emit()"
+  (submit)="createStaff()"
+>
+  <lib-dynamic-form
+    [fieldset]="createStaffForm"
+    [errors]="errors"
+  ></lib-dynamic-form>
+</lib-modal>

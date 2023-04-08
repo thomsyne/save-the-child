@@ -1,0 +1,112 @@
+<lib-loader></lib-loader>
+<div class="onboarding" [class.onboarding--full]="stage === 0">
+  <img
+    *ngIf="stage === 0"
+    class="bg-right"
+    src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__pink__spade.svg"
+    alt=""
+  />
+  <img
+    *ngIf="stage === 0"
+    class="bg-left"
+    src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__pink__spade.svg"
+    alt=""
+  />
+  <div
+    class="onboarding__sidebar"
+    *ngIf="stage !== 0"
+    [class.onboarding__sidebar__bg1]="stage == 1"
+    [class.onboarding__sidebar__bg2]="stage == 2"
+    [class.onboarding__sidebar__bg3]="stage == 3"
+  >
+    <img
+      [routerLink]="'/'"
+      id="onboarding__logo"
+      src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/logos/logo__rexretail.svg"
+      class="onboarding__logo cursor-pointer"
+    />
+
+    <div class="onboarding__footer">
+      <p class="onboarding__footer__text">
+        RexRetail offers digital solutions that makes managing your inventory
+        easier, it also helps you find customer trends and allow you track
+        payments all-in-one box.
+      </p>
+      <p class="onboarding__footer__action">
+        Have an account?
+        <button
+          class="btn btn__sm btn-outline-primary no-margin"
+          routerLink="/login"
+        >
+          Sign In
+        </button>
+      </p>
+    </div>
+  </div>
+
+  <div class="onboarding__stage" [class.onboarding__stage--center]="stage == 0">
+    <div class="" [class.onboarding__stage__content]="stage > 0">
+      <div class="onboarding__stage__monitor" *ngIf="stage > 0">
+        <p class="">
+          Please provide the following details to complete your setup.
+        </p>
+        <div *ngIf="isNigeriaOnboarding" class="monitor-guage-container">
+          <div
+            class="monitor-guage"
+            [class.monitor-guage--current-step]="stage <= 1"
+            [class.monitor-guage--past-step]="stage > 1"
+          ></div>
+          <div
+            class="monitor-guage"
+            [class.monitor-guage--current-step]="stage <= 2"
+            [class.monitor-guage--next-step]="stage + 1 === 2"
+            [class.monitor-guage--past-step]="stage > 2"
+          ></div>
+          <div
+            class="monitor-guage"
+            [class.monitor-guage--current-step]="stage === 3"
+            [class.monitor-guage--next-step]="stage + 1 === 3"
+          ></div>
+        </div>
+      </div>
+      <div [ngSwitch]="stage">
+        <ng-container *ngSwitchCase="0">
+          <app-subscription-option
+            [allowPlanSelect]="hasFetchPlanCatalogs"
+            (proceed)="selectSubTypeComplete($event)"
+          >
+          </app-subscription-option>
+        </ng-container>
+        <ng-container *ngSwitchCase="1">
+          <app-subscription-plan
+            [plan]="merchant.subscriptionType"
+            [planData]="selectedSubPlan"
+            [posCost]="subscriptionPlans.devicePrice"
+            (goBack)="this.stage = 0"
+            (proceed)="selectPlanDetailsComplete($event)"
+          ></app-subscription-plan>
+        </ng-container>
+        <ng-container *ngSwitchCase="2">
+          <app-business-information
+            [saveBusInfoLoading]="saveBusInfoLoading"
+            (goBack)="this.stage = 1"
+            (proceed)="inputBusInfoComplete($event)"
+          ></app-business-information>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+          <app-admin-information
+            [saveAdminInfoLoading]="saveAdminInfoLoading"
+            (proceed)="inputAdminInfoComplete($event)"
+          >
+          </app-admin-information>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-terms-of-use-modal
+  (modalClosed)="closeModal($event)"
+  *ngIf="showTermsOfUseModal"
+>
+</app-terms-of-use-modal>

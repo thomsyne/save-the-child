@@ -1,0 +1,7 @@
+.center-align {
+  transform: translateX(50%);
+}
+
+.end-align {
+  justify-content: flex-end;
+}

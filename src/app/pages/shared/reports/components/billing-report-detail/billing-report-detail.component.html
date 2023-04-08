@@ -1,0 +1,184 @@
+<div class="row" *ngIf="billingInfo">
+  <div class="details-section--card row-col__md-3">
+    <div class="details-section--card_header">
+      <h4 class="heading__4">NGN {{billingInfo.amount}}</h4>
+      <p> {{billingInfo.paymentStatus}}</p>
+    </div>
+    <div class="metadata-container">
+      <div class="metadata-entry">
+        <span class="metadata-entry_name">Merchant Ref.</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.reference}}
+        </span>
+      </div>
+      <div class="metadata-entry">
+        <span class="metadata-entry_name">Payment Date</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.paymentDate|date}}
+        </span>
+      </div>
+      <!-- <div class="metadata-entry">
+        <span class="metadata-entry_name">Currency</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.quantity}}
+        </span>
+      </div> -->
+      <!-- <div class="metadata-entry">
+        <span class="metadata-entry_name">Amount</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.quantity}}
+        </span>
+      </div> -->
+      <div class="metadata-entry">
+        <span class="metadata-entry_name">Payment Method</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.paymentMethod || "None"}}
+        </span>
+      </div>
+      <div class="metadata-entry">
+        <span class="metadata-entry_name">Payment Status</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.paymentStatus}}
+        </span>
+      </div>
+      <div class="metadata-entry">
+        <span class="metadata-entry_name">subscription Name</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.subscriptionName}}
+        </span>
+      </div>
+      <div *ngIf="billingInfo.paymentMethod == 'card'" class="metadata-entry">
+        <span class="metadata-entry_name">Card Holder Name</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.cardHolderName}}
+        </span>
+      </div>
+      <div class="metadata-entry">
+        <span class="metadata-entry_name">Quantity</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.quantity}}
+        </span>
+      </div>
+      <div class="metadata-entry">
+        <span class="metadata-entry_name">Status</span>
+        <span class="metadata-entry_value">
+          {{billingInfo.status}}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transaction row-col__md-5 pl-5">
+    <div class="transaction__header">
+      <p class="text__default text-gray">Transaction Highlight</p>
+    </div>
+
+    <div class="hightlight-card">
+      <div class="hightlight-card__section">
+        <div class="hightlight-card__indicators">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__indicators.svg"
+            alt="image__indicators"
+          />
+        </div>
+
+        <div class="hightlight-card__section__dates">
+          <div class="item">
+            <div class="item__header text-gray text__small">Subscription Start Period</div>
+            <div class="item__sub-text text-gray text__small">
+              {{billingInfo.periodStart ? (billingInfo.periodStart|date) : "--"}}
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item__header text-gray text__small">Subscription End Period</div>
+            <div class="item__sub-text text-gray text__small">
+              {{billingInfo.periodEnd ? (billingInfo.periodEnd|date) : "--"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hightlight-card">
+      <div class="hightlight-card__section">
+        <div class="hightlight-card__indicators">
+          <img
+            src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/images/image__indicators.svg"
+            alt="image__indicators"
+          />
+        </div>
+
+        <div class="hightlight-card__section__dates">
+          <div class="item">
+            <div class="item__header text-gray text__small">Created On</div>
+            <div class="item__sub-text text-gray text__small">
+              {{billingInfo.createdOn ? (billingInfo.createdOn|date) : "--"}}
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item__header text-gray text__small">Updated On</div>
+            <div class="item__sub-text text-gray text__small">
+              {{billingInfo.updatedOn? (billingInfo.updatedOn|date) : "--"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 d-flex">
+      <app-initiate-payment
+        style="display: none;"
+        *ngIf="!isUserGAAdmin && billingInfo?.paymentStatus == 'Pending'"
+        [invoiceReference]="billingInfo?.reference"
+        [invoiceId]="billingInfo?.id"
+      >
+      </app-initiate-payment>
+
+      <button (click)="advanceTransfer()"
+        style="display: none;"
+        *ngIf="!isUserGAAdmin && billingInfo?.paymentStatus == 'Pending'"
+          class="btn__sm btn btn-primary"
+          id="initiate-transfer-payment"
+          >
+          Make Pay
+      </button>
+
+      <button (click)="togglePaymentModal()"
+        *ngIf="!isUserGAAdmin && billingInfo?.paymentStatus == 'Pending'"
+          class="btn__sm btn btn-primary"
+          >
+          Make Payment
+      </button>
+
+
+      <button (click)="cancelSubscription()"
+      *ngIf="isUserGAAdmin && billingInfo?.paymentStatus == 'Pending'"
+        class="btn__sm btn btn-outline-primary">
+        Cancel Invoice
+      </button>
+
+      <button (click)="toggleSubscriptionModal()"
+        *ngIf="isUserGAAdmin && canUpdateSubscription && (billingInfo.paymentStatus == 'Failed' || billingInfo.paymentStatus == 'Pending') "
+        class="btn__sm btn btn-outline-primary">
+        Update Subscription
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<app-billing-subscription-update
+  *ngIf="displaySubscriptionModal"
+  [invoiceData]="invoiceData"
+  (closeModal)="toggleSubscriptionModal()"
+  (refreshData)="ngOnInit()"
+>
+</app-billing-subscription-update>
+
+<app-billing-payment-update
+  *ngIf="displayPaymentModal"
+  (modalClose)="selectPayment($event)"
+>
+</app-billing-payment-update>

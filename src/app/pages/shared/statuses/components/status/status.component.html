@@ -1,0 +1,37 @@
+<div class="status-layout">
+  <div class="status-layout__container">
+
+    <ng-container *ngIf="isSuccess">
+      <span id="svg">
+        <img src="../../../../../../assets/icons/success.svg" />
+      </span>
+      <h2>Payment Successful</h2>
+      <p class="message">
+        You have made a payment of <strong>N120,000</strong><br/>
+        We have sent a receipt to your email.
+      </p>
+
+      <p (click)="routeUser()" class="router-message">
+        Go to Dashboard
+      </p>
+    </ng-container>
+
+    <ng-container *ngIf="!isSuccess">
+      <span id="svg">
+        <img src="../../../../../../assets/icons/fail.svg" />
+      </span>
+      <h2>An Error Occured</h2>
+
+      <p class="message">
+        We were unable to process your subscription  at the time. Please try again and we'll make sure to get it done.
+      </p>
+
+      <p (click)="routeUser()" class="router-message">
+        Go back
+      </p>
+    </ng-container>
+
+
+    <app-powered-by></app-powered-by>
+  </div>
+</div>

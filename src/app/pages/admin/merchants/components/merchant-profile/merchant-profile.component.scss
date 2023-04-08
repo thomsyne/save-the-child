@@ -1,0 +1,96 @@
+.analysis-card {
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .analysis-card {
+    padding: 0;
+  }
+}
+
+.profile {
+  padding-left: 1.5rem;
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .suspend {
+      background: #f8c15b;
+      color: white;
+    }
+  }
+}
+
+.sub-status {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__state {
+    position: absolute;
+    top: 10px;
+    right: 0;
+
+    .badge {
+      background: white;
+    }
+  }
+
+  &__box {
+    position: relative;
+    width: calc(100% - 40px);
+    display: flex;
+    background: #950007;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 20px;
+
+    &--next {
+      background: #0d2543;
+      color: white;
+    }
+  }
+}
+
+.profile-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.row-col__lg-8 {
+  border-right: 0.5px solid #dfdede;
+  padding-right: 1.5rem;
+}
+
+.documents-wrapper {
+  &__document-download {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    button {
+      height: min-content;
+    }
+    span {
+      align-self: center;
+    }
+  }
+  &__document-download:not(:last-child){
+    border-bottom: 1px solid #dfdede;
+  }
+}
+
+@media (max-width: 768px) {
+  .row-col__lg-8 {
+    border-right: 0;
+    padding: 0;
+  }
+
+  .profile {
+    margin-top: 1.5rem;
+    padding: 0;
+  }
+}

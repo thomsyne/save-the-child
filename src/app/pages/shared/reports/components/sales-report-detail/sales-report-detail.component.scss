@@ -1,0 +1,29 @@
+.overview {
+  padding-right: 30px;
+  background: white;
+  border-radius: 4px;
+  height: auto;
+  padding: 24px;
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.view {
+  padding-left: 30px;
+  &__title {
+    background: #e7e6e6;
+    border-radius: 4px 4px 0px 0px;
+    padding: 20px 24px;
+  }
+}
+
+.r-title {
+  .details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}

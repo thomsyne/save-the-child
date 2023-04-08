@@ -1,0 +1,57 @@
+.plan {
+  height: calc(100vh - 100px);
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 23px;
+  overflow: scroll;
+
+  &__heading {
+    margin: 15px 0 24px;
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+
+    &--sm-margin {
+      margin-top: 50px;
+    }
+    &--lg-margin {
+      margin-top: 170px;
+    }
+    .btn {
+      margin: 0;
+    }
+  }
+
+  &__prev-button {
+    background-color: transparent;
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .plan {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 80px;
+    &__button-container {
+      padding-bottom: 1rem;
+  
+      &--sm-margin {
+        margin-top: 0;
+      }
+      &--lg-margin {
+        margin-top: 0;
+      }
+    }
+  }
+}

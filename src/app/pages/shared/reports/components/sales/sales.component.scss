@@ -1,0 +1,43 @@
+.form-central__content {
+    background-color: white;
+    padding: 1rem;
+    height: 530px;
+
+    .heading__5 {
+      overflow-wrap: break-word;
+    }
+  }
+
+  .row-col__md-3 {
+    .set-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        text-align: center;
+      }
+    }
+  }
+
+  .cashback {
+
+    &-container {
+      width: calc(100% - 2rem);
+      border-radius: 4px;
+      background: #F9F9F9;
+      padding: 1rem;
+
+      b {
+        color: #13A500;
+      }
+    }
+
+    &__button {
+      background: #13A500;
+      border: 1px solid #13A500;
+      color: white;
+      border-radius: 4px;
+    }
+  }

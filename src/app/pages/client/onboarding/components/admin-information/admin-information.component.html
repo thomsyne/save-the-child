@@ -1,0 +1,33 @@
+<div class="admin-information">
+  <div class="heading">
+    <h4 class="heading__4 no-margin-b">Personal Details</h4>
+    <p class="text-gray text__small no-margin-t">
+      Kindly provide your personal details to get started with RexRetail.
+    </p>
+  </div>
+
+  <div class="form-central__form">
+    <lib-dynamic-form
+      #adminInformationForm
+      [fieldset]="informationFormDetails"
+      [errors]="errors"
+    ></lib-dynamic-form>
+  </div>
+
+
+  <div class="admin-information__button-container">
+    <!-- <button
+      class="btn admin-information__prev-button"
+      (click)="goBack.emit()">
+      Previous Step
+    </button> -->
+    <div></div>
+    <button
+      class="btn btn-primary"
+      [disabled]="adminInformationForm.form.invalid || saveAdminInfoLoading"
+      (click)="proceed.emit(adminInformationForm.form.value)"
+    >
+      {{ saveBusInfoLoading ? "Loading..." : "Save & Proceed" }}
+    </button>
+  </div>
+</div>

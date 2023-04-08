@@ -1,0 +1,125 @@
+<div class="cards-container">
+  <div class="container pt-5">
+    <div class="flexed">
+      <div class="intro flex-1">
+        <h3 class="heading__4 mb-4">Hello, {{ userName | titlecase }}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <section
+        class="row-col__md-7 pr-5"
+        style="border-right: 0.5px solid #dfdede"
+      >
+        <div class="analysis-card mb-5" *hasPermission="['CAN_VIEW_ADMIN_REPORT']">
+          <div class="row">
+            <div class="row-col__md-4 analysis-section cursor-pointer" routerLink="/merchants">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__user__blue.svg"
+                alt=""
+              />
+              <h5 class="heading__5">
+                {{ (merchantData$ | async)?.total ?? "--" }}
+              </h5>
+              <p class="text-gray text__small">All Merchants</p>
+            </div>
+            <div class="row-col__md-4 analysis-section">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__user__blue__green__check.svg"
+                alt=""
+              />
+              <h5 class="heading__5">
+                {{ (merchantData$ | async)?.active ?? "--" }}
+              </h5>
+              <p class="text-gray text__small">Active Merchants</p>
+            </div>
+            <div class="row-col__md-4 analysis-section">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__user__blue__error.svg"
+                alt=""
+              />
+              <h5 class="heading__5">
+                {{ (merchantData$ | async)?.inActive ?? "--" }}
+              </h5>
+              <p class="text-gray text__small">Inactive Merchants</p>
+            </div>
+          </div>
+        </div>
+        <div class="analysis-card" *hasPermission="['CAN_VIEW_ADMIN_REPORT']">
+          <div class="row">
+            <div class="row-col__md-4 analysis-section cursor-pointer" routerLink="/subscriptions">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__blue__pos__terminal.svg"
+                alt=""
+              />
+              <h5 class="heading__5">
+                {{ (subscriptionData$ | async)?.total ?? "--" }}
+              </h5>
+              <p class="text-gray text__small">All Subscriptions</p>
+            </div>
+            <div class="row-col__md-4 analysis-section">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__white__check__green__bg.svg"
+                alt=""
+              />
+              <h5 class="heading__5">
+                {{ (subscriptionData$ | async)?.active ?? "--" }}
+              </h5>
+              <p class="text-gray text__small">Active Subscriptions</p>
+            </div>
+            <div class="row-col__md-4 analysis-section">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__error__red.svg"
+                alt=""
+              />
+              <h5 class="heading__5">
+                {{ (subscriptionData$ | async)?.inActive ?? "--" }}
+              </h5>
+              <p class="text-gray text__small">Inactive Subscriptions</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="row-col__md-5 pl-5">
+        <div class="analysis-card mb-5">
+          <div class="row">
+            <div class="row-col__sm-6 device-section cursor-pointer" routerLink="/devices">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__terminal__black.svg"
+                alt=""
+              />
+              <h5 class="heading__5 no-margin">{{ ((deviceStatus$ | async)?.numberOfActiveDevice + (deviceStatus$ | async)?.numberOfInActiveDevice) ?? "--"  }}</h5>
+              <p class="text-gray text__small no-margin">All Devices</p>
+            </div>
+            <div class="row-col__sm-6 device-section">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__terminal__brown.svg"
+                alt=""
+              />
+              <h5 class="heading__5 no-margin">{{ (deviceStatus$ | async)?.numberOfInActiveDevice ?? "--" }}</h5>
+              <p class="text-gray text__small no-margin">Inactive Devices</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-merchants">
+          <p class="text-gray text-bold">New Merchants</p>
+          <div class="row" style="row-gap: 1rem">
+            <div
+              class="row-col__md-3"
+              *ngFor="let merchant of topMerchants$ | async"
+            >
+              <div class="customer-data-container">
+                <p class="text__bold customer-avatar">
+                  {{ merchant.name | Initials }}
+                </p>
+                <span class="text-gray text__small">
+                  {{ merchant.name }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<nav>
+  <div class="header" #header>
+    <img
+      src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/logos/logo__rexretail.svg"
+      class="header__logo"
+      alt="icon"
+      routerLink="/"
+    />
+
+    <div class="header__links">
+      <a [routerLink] = "['/']"  fragment="plans" class="header__link">Pricing</a>
+      <a routerLink="/faqs" class="header__link">FAQs</a>
+      <a routerLink="/login" class="header__link">Login</a>
+      <a class="btn btn-primary no-margin" routerLink="/onboarding">Sign Up</a>
+    </div>
+
+    <div class="header__hamburger">
+      <img *ngIf="!isHamburgerOpen"
+        alt="burger-nav" (click)="isHamburgerOpen = !isHamburgerOpen"
+        src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__burger__nav.svg"
+      />
+
+      <img *ngIf="isHamburgerOpen"
+        alt="burger-nav-close" (click)="isHamburgerOpen = !isHamburgerOpen"
+        src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__burger__nav__close.svg"
+      />
+    </div>
+  </div>
+  <div
+  class="header__mobile-links pb-3"
+  [class.hidden]="!isHamburgerOpen"
+  >
+    <a routerLink="#" class="header__link">Home</a>
+    <a routerLink="/pricing" class="header__link">Pricing</a>
+    <a routerLink="/faqs" class="header__link">FAQs</a>
+    <a routerLink="/login" class="header__link">Login</a>
+    <a class="btn btn-primary no-margin" routerLink="/onboarding">Sign Up</a>
+  </div>
+</nav>

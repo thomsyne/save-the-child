@@ -1,0 +1,102 @@
+.center-layout .form-central__content {
+  width: 421px;
+  margin: auto;
+  margin-top: 1rem;
+  height: auto;
+
+  .form-central__form {
+    padding-bottom: 0px;
+  }
+}
+
+.head{
+
+  &__status {
+    margin: 0.5rem 0 1.5rem;
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  &__tagline {
+    color: rgba(26, 26, 26, 0.72);
+  }
+}
+
+
+
+.rexpay-sub {
+  background: #f9f9f9;
+  border-radius: 4px;
+  padding: 24px 8px;
+  text-align: center;
+
+  &__detail {
+    text-align: center;
+
+    &__head {
+    }
+    &__data {
+      p {
+        text-align: end;
+      }
+    }
+  }
+  p {
+    margin: 0;
+  }
+
+  &__dat {
+    padding: 1.2rem 0 0;
+    display: flex;
+    justify-content: space-between;
+
+
+    &.no-p {
+      padding: 0;
+    }
+  }
+  hr {
+    margin: 1.5rem 0;
+  }
+  &__upgrade {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .icon {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+}
+
+.form-central__content-actions {
+  width: 421px;
+  left: auto;
+  position: relative;
+  bottom: 0px;
+  right: 0px;
+  margin: 48px 0px 40px;
+
+  .btn {
+    width: 100%;
+    margin: auto;
+    height: 44px;
+  }
+}
+
+.powered-footer {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  span {
+    line-height: 26px;
+    font-size: 14px;
+  }
+  img {
+    height: 24px;
+  }
+}

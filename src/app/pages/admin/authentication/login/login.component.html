@@ -1,0 +1,31 @@
+<img
+  [routerLink]="['../home']"
+  src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/logos/logo__rexretail.svg"
+  class="login-logo"
+/>
+<div class="login-bg">
+  <div class="card-bg">
+    <div class="login-card">
+      <lib-loader></lib-loader>
+
+      <h2>Login</h2>
+
+      <p class="sub-head">
+        Login with your assigned company email address to gain access to the
+        platform.
+      </p>
+
+      <button
+        class="btn btn-secondary btn__lg"
+        (click)="msalService.microsoftSignIn()"
+        [disabled]="msalService.loadingStatus$ | async"
+      >
+        <img
+          src="https://assetslogos.s3-eu-west-1.amazonaws.com/frontendassets/icons/icon__outlook__colored.svg"
+          alt="outlook"
+        />
+        <span>Login with Outlook</span>
+      </button>
+    </div>
+  </div>
+</div>

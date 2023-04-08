@@ -1,0 +1,107 @@
+:host {
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.login-logo {
+  //   width: 143px;
+  //   height: 110px;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  margin-top: 3rem;
+  transform: scale(0.8);
+}
+
+.login-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media screen and (max-width: 414px) {
+    background-size: contain;
+  }
+
+  & .card-bg {
+    background-image: url("https://assetslogos.s3-eu-west-1.amazonaws.com/frontendassets/images/image__login__background.svg");
+    background-repeat: no-repeat;
+    padding: 8rem;
+    background-position-x: center;
+
+    @media screen and (max-width: 414px) {
+      padding: 8rem 2rem;
+    }
+  }
+
+  & .login-card {
+    height: 296px;
+    width: 431px;
+    padding: 52px;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: -20px 32px 60px #33333329;
+
+    border-radius: 0.5rem;
+
+    @media screen and (max-width: 568px) {
+      width: 302px;
+    }
+
+    @media screen and (max-width: 414px) {
+      width: 250px;
+      height: 310px;
+    }
+
+    @media screen and (max-width: 375px) {
+      padding: 32px;
+    }
+
+    & h2 {
+      margin-bottom: 24px;
+    }
+
+    & p.sub-head {
+      color: #1a1a1ab8;
+      letter-spacing: 0.26px;
+
+      margin-bottom: 52px;
+    }
+
+    & button {
+      width: 100%;
+      margin: 0;
+      margin-bottom: 52px;
+      padding: 15px 30px;
+
+      color: #1a1a1ab8;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #ffffff 0% 0% no-repeat padding-box;
+      box-shadow: 0px 12px 32px #9c989829;
+      border-radius: 8px;
+
+      & img {
+        margin: 0 12px;
+        width: 28px;
+      }
+    }
+
+    & p.sub-footer {
+      text-align: center;
+      color: #1a1a1ab8;
+
+      & span {
+        color: #ed1c25;
+
+        cursor: pointer;
+      }
+    }
+  }
+}

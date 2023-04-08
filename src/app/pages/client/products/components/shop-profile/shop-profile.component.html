@@ -1,0 +1,43 @@
+<lib-loader></lib-loader>
+<div class="analysis-card">
+  <div class="row">
+    <div class="row-col__md-6 pr-3" style="border-right: 0.5px solid #dfdede">
+      <div class="form-container">
+        <lib-dynamic-form
+          #form
+          [fieldset]="shopForm"
+          [errors]="errors"
+        ></lib-dynamic-form>
+
+        <button
+          class="btn btn-primary"
+          [disabled]="form.form.invalid || loader?.status"
+          (click)="updateShop()"
+        >
+          Save Changes
+        </button>
+
+        <hr />
+
+        <button
+          class="btn btn-primary"
+          (click)="updateShop(true)"
+          [disabled]="loader?.status"
+        >
+          {{ (shop$ | async).active ? "Disable" : "Enable" }} Shop
+        </button>
+      </div>
+    </div>
+    <div class="row-col__md-6 pl-3">
+      <h6 class="heading__6">List of cashiers assigned to this shop</h6>
+      <ng-container *ngFor="let user of cashiers$ | async">
+        <p
+          class="pb-2 text__default"
+          style="border-bottom: 0.5px solid #dfdede"
+        >
+          {{ user.firstName }} {{ user.lastName }}
+        </p>
+      </ng-container>
+    </div>
+  </div>
+</div>

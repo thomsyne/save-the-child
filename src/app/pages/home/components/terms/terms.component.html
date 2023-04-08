@@ -1,0 +1,77 @@
+<div class="terms">
+  <div class="terms__container">
+    <div class="terms__menu">
+      <div class="terms__menu--sticky">
+        <h3>Page Navigation</h3>
+        <div class="terms__menu__items">
+          <a
+            [routerLink]="['/terms']"
+            fragment="section-1"
+            [class.active]="!(activeFragment$ | async) || (activeFragment$ | async) === 'section-1'"
+          >
+            Section 1
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="section-2"
+            [class.active]="(activeFragment$ | async) === 'section-2'"
+          >
+            Section 2
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="section-3"
+            [class.active]="(activeFragment$ | async) === 'section-3'"
+          >
+            Section 3
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="section-4"
+            [class.active]="(activeFragment$ | async) === 'section-4'"
+          >
+            Section 4
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="section-5"
+            [class.active]="(activeFragment$ | async) === 'section-5'"
+          >
+            Section 5
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="section-6"
+            [class.active]="(activeFragment$ | async) === 'section-6'"
+          >
+            Section 6
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="section-7"
+            [class.active]="(activeFragment$ | async) === 'section-7'"
+          >
+            Section 7
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="Annexure-A"
+            [class.active]="(activeFragment$ | async) === 'Annexure-A'"
+          >
+            Annexure A
+          </a>
+          <a
+            [routerLink]="['/terms']"
+            fragment="Annexure-B"
+            [class.active]="(activeFragment$ | async) === 'Annexure-B'"
+          >
+            Annexure B
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="terms__article">
+        <app-terms-data></app-terms-data>
+    </div>
+  </div>
+</div>

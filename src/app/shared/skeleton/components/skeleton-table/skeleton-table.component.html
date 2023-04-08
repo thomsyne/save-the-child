@@ -1,0 +1,25 @@
+<div class="skeleton-loader">
+  <!-- <div class="buttons">
+    <div class="filter button loading"></div>
+    <div class="actionButton button loading"></div>
+  </div> -->
+
+  <!-- Table Header  -->
+  <div class="table-header">
+    <div class="table-column-title" *ngFor="let column of columns"></div>
+  </div>
+
+  <!-- Table Rows  -->
+  <div class="table-row" *ngFor="let row of [1, 2, 3, 4, 5]">
+    <div class="table-cell-data loading" *ngFor="let column of columns"></div>
+  </div>
+
+  <div class="table-row-2">
+    <div class="table-cell-data-long loading"></div>
+    <div class="table-cell-data-long loading"></div>
+    <div class="table-cell-data-long loading"></div>
+  </div>
+  <div class="">
+    <div class="table-cell-data-large loading"></div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.terms__article {
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  p, li {
+    letter-spacing: 0.26px;
+    color: #1A1A1A;
+    font-size: 16px;
+    span {
+      color: var(--color-primary);
+    }
+  }
+}

@@ -1,0 +1,155 @@
+<div *ngIf="field.visible !== false" [ngSwitch]="field.type">
+  <!-- CHECKBOX -->
+  <div *ngSwitchCase="0">
+    <div
+      class="checkbox-container"
+      style="margin-bottom: 20px; padding-left: 2px"
+    >
+      <input
+        id="{{ field.name }}"
+        name="{{ field.name }}"
+        type="checkbox"
+        [formControl]="control"
+      />
+      <label for="{{ field.name }}">{{
+        field.displayValue ? field.displayValue : (field.name | sentenceCase)
+      }}</label>
+    </div>
+  </div>
+
+    <!-- DATEPICKER -->
+    <div *ngSwitchCase="1">
+      <div class="field-container">
+        <label class="field three">
+          <input
+            type="date"
+            class="field-input"
+            [formControl]="control"
+            [attr.disabled]="field.primitiveDisabled!!"
+            placeholder=" "
+          />
+          <span class="field-placeholder">{{
+            field.displayValue ? field.displayValue : (field.name | sentenceCase)
+          }}</span>
+        </label>
+      </div>
+    </div>
+
+  <!-- SELECT DROPDOWN -->
+  <div *ngSwitchCase="2">
+    <div class="field-container">
+      <label class="field three">
+        <select
+          class="field-select"
+          type="text"
+          name="select"
+          [formControl]="control"
+        >
+          <option value="" disabled>Choose...</option>
+          <option
+            *ngFor="let option of field.options | keyvalue"
+            [value]="option.value"
+          >
+            {{ option.key }}
+          </option>
+        </select>
+        <span class="field-placeholder">{{
+          field.displayValue ? field.displayValue : (field.name | sentenceCase)
+        }}</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- TEXTAREA -->
+  <div *ngSwitchCase="3">
+    <div class="field-container">
+      <label class="field">
+        <textarea
+          name="{{ field.name }}"
+          id="{{ field.name }}"
+          class="field-textarea"
+          [formControl]="control"
+        ></textarea>
+        <span class="field-placeholder">{{
+          field.displayValue ? field.displayValue : (field.name | sentenceCase)
+        }}</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- TEXT FIELD -->
+  <!-- <div *ngSwitchCase="4">
+    <div class="field-container">
+      <label class="field three">
+        <input
+          type="text"
+          class="field-input"
+          [formControl]="control"
+        />
+        <span class="field-placeholder">{{
+          field.displayValue ? field.displayValue : (field.name | sentenceCase)
+        }}</span>
+      </label>
+    </div>
+  </div> -->
+
+  <!-- TEXT FIELD -->
+  <div *ngSwitchCase="4">
+    <div class="field-container">
+        <input
+          type="text"
+          class="field four"
+          placeholder="wont be shown"
+          [formControl]="control"
+        />
+        <label class="field">{{
+          field.displayValue ? field.displayValue : (field.name | sentenceCase)
+        }}</label>
+    </div>
+  </div>
+
+  <!-- NUMBER FIELD -->
+  <div *ngSwitchCase="5">
+    <div class="field-container">
+      <label class="field three">
+        <input
+          type="text"
+          class="field-input"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+          [formControl]="control"
+        />
+        <span class="field-placeholder">{{
+          field.displayValue ? field.displayValue : (field.name | sentenceCase)
+        }}</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- PASSWORD FIELD -->
+  <div *ngSwitchCase="6">
+    <div class="field-container">
+      <label class="field three">
+        <input
+          type="password"
+          required
+          class="field-input"
+          [id]="field.name"
+          autocomplete="autocomplete_off_hack_xfr4!k"
+          [formControl]="control"
+          #password
+        />
+        <span class="field-placeholder">{{
+          field.displayValue ? field.displayValue : (field.name | sentenceCase)
+        }}</span>
+        <div
+          class="eye slash"
+          [id]="field.name + 'eye'"
+          (click)="togglePassword(field.name)"
+        >
+          <div></div>
+          <div></div>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>

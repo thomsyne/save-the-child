@@ -1,0 +1,140 @@
+.row {
+  margin-bottom: 0;
+}
+
+
+.row.charts > div:first-child {
+  border-right: 0.5px solid #dfdede
+}
+
+.analysis {
+  display: flex;
+  gap: 2rem;
+
+  &__section {
+    height: 33.3%;
+    border-bottom: 1px solid #f2f2f2;
+    &:last-child {
+      border: none;
+    }
+  }
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    p {
+      margin: 0;
+    }
+
+    .analysis-data {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.dash-analysis-card {
+  padding: 20px 20px 0 20px;
+  background-color: #fff;
+  border-radius: 16px;
+  &.left--side {
+    min-height: 400px;
+ }
+}
+
+.flex-modify {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.top-cashier {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.right-container {
+  height: 92%;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-position {
+  width: max-content;
+
+  .labelled-dropdown-container {
+    display: flex;
+  }
+}
+
+.customer-data-container {
+  background-color: #f9f9f9;
+  box-shadow: 0px 25px 32px #6d6e710d;
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+}
+
+.customer-avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto !important;
+}
+
+.text-gray {
+  color: #9c9898 !important;
+}
+
+.header-flex {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+
+.sub-section {
+  background: #09274E;
+  color: white;
+  padding: 18px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+
+  div {
+    display: flex;
+    color: #09274E;
+    justify-content: flex-end;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .pr-4 {
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row.charts > div:first-child {
+    border-right: none;
+  }
+}

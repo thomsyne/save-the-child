@@ -1,0 +1,14 @@
+<section class="section-dashboard-donut-container">
+  <div class="" *ngIf="chartParameters">
+    <lib-donut-chart [colors]="colors" [params]="chartParameters"></lib-donut-chart>
+  </div>
+  <div class="chart-legend-container">
+    <ng-container *ngFor="let legend of chartParameters?.chartLabels; let idx = index">
+      <div class="chart-legend">
+        <div class="chart-legend__color" [style.background]="chartParameters.chartColors[idx]"></div>
+        <span class="text-dashboard-gray">{{ legend }}</span>
+      </div>
+    </ng-container>
+  </div>
+
+</section>

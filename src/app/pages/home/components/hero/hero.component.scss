@@ -1,0 +1,147 @@
+.hero {
+  padding-top: 175px;
+  width: calc(100vw - 20%);
+  margin: 0 auto;
+
+  // height: calc(100vh - 101px);
+  // position: sticky;
+  // top: -101px;
+  // z-index: 1;
+
+  &__information {
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 60px;
+
+    b {
+      &::before {
+        content: "";
+        animation: changeText infinite 8s;
+      }
+    }
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 44px;
+    max-width: 600px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+
+    .trans {
+      background: transparent;
+      transition: all 0.4s;
+
+      &:hover {
+        background: rgb(236, 235, 235);
+      }
+    }
+  }
+
+  &__img-container {
+    .fit-container {
+      position: relative;
+      // .main {
+      //   // height: 580px;
+      // }
+
+      .sub {
+        position: absolute;
+        left: -160px;
+        bottom: -120px;
+      }
+    }
+  }
+
+  &__arrow-down {
+    display: flex;
+    justify-content: space-between;
+
+    .arrow-down {
+      width: 35px;
+      height: 35px;
+      margin: 80px auto 0;
+    }
+  }
+}
+
+.bounce {
+  animation: bounce 1200ms ease-in-out infinite alternate;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(40px);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hero {
+    &__information {
+      flex-wrap: wrap;
+      gap: 100px;
+      justify-content: center;
+      .main {
+        width: 100%;
+      }
+
+      .sub {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    width: calc(100vw - 10%);
+    padding-top: 100px;
+    h1 {
+      font-size: 36px;
+    }
+  
+    p {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .hero {
+    &__actions {
+      flex-direction: column;
+    }
+  }
+}
+
+@keyframes changeText {
+  0% {
+    content: "Business";
+  }
+  25% {
+    content: "Payments";
+  }
+  50% {
+    content: "Customers";
+  }
+  75% {
+    content: "Inventory";
+  }
+  100% {
+    content: "Sales";
+  }
+}
+
+.btn:hover {
+  background: darken(hsl(358, 86%, 52%), 8%);
+}

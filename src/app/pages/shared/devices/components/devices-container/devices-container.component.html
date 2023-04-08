@@ -1,0 +1,34 @@
+<div  class="cards-container">
+  <div  class="container">
+
+    <div class="reposition-breadcrumbs" *ngIf="currentUrl !== 'devices'">
+      <ul class="breadcrumbs-container">
+        <li
+          class="crumb"
+          style="display: block"
+          routerLink="/devices"
+        >
+          <a class="crumb-link">Devices</a>
+        </li>
+    
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'manage'">
+          <a class="crumb-link">My Staff List</a>
+        </li>
+    
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'permissions'">
+          <a class="crumb-link">Staff Roles</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'reports'">
+          <a class="crumb-link">Cashier Reports</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'observe'">
+          <a class="crumb-link">Observe My Staff</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

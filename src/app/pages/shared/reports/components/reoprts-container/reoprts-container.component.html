@@ -1,0 +1,59 @@
+<div  class="cards-container">
+  <div  class="container">
+
+    <div class="reposition-breadcrumbs" *ngIf="currentUrl !== 'reports'">
+      <ul class="breadcrumbs-container">
+        <li
+          class="crumb"
+          style="display: block"
+          routerLink="/reports"
+        >
+          <a class="crumb-link">Reports</a>
+        </li>
+
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('sales')">
+          <a class="crumb-link">Sales Reports</a>
+        </li>
+
+        <ng-container *ngIf="currentUrl.includes('details')">
+          <li class="crumb" routerLink="/reports/sales-reports" queryParamsHandling="preserve">
+            <a class="crumb-link">Sales Reports</a>
+          </li>
+          <li class="crumb active-crumb">
+            <a class="crumb-link">Details</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="currentUrl.includes('billing-info') || currentUrl.includes('status')">
+          <li class="crumb" routerLink="/reports/billings" queryParamsHandling="preserve">
+            <a class="crumb-link">Billing Reports</a>
+          </li>
+          <li class="crumb active-crumb">
+            <a class="crumb-link">Billing Info</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="currentUrl.includes('cashier-info')">
+          <li class="crumb" routerLink="/reports/cashiers" queryParamsHandling="preserve">
+            <a class="crumb-link">Cashier Reports</a>
+          </li>
+          <li class="crumb active-crumb">
+            <a class="crumb-link">Cashier Info</a>
+          </li>
+        </ng-container>
+
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('settlements')">
+          <a class="crumb-link">Settlement Reports</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('billings')">
+          <a class="crumb-link">Billing Reports</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'cashiers'">
+          <a class="crumb-link">Cashier Reports</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,254 @@
+<div class="cards-container">
+  <div class="container pt-5">
+    <div class="row">
+      <!-- Left Card -->
+      <div class="row-col__lg-9 h-100 pr-4">
+        <div class="row flex-modify">
+          <div class="top-section flexed mb-3 row-col__md-6">
+            <div class="intro flex-1">
+              <h3 class="heading__4 no-margin">Hello, {{ userName }}</h3>
+              <span class="text__default text-dashboard-gray sub-text">
+                Welcome back!
+              </span>
+            </div>
+          </div>
+          <div class="row-col__md-3 pb-3 dropdown-position">
+            <lib-labelled-dropdown
+              [params]="filterDropdownParameters"
+              (itemSelected)="setDateRange($event)"
+            ></lib-labelled-dropdown>
+          </div>
+        </div>
+        <div class="dash-analysis-card left--side">
+          <!-- Payment Methods -->
+          <p class="text-gray text__default pl-3">Payment Methods</p>
+          <div class="row">
+            <section
+              class="row-col__md-4 pl-3"
+              *ngFor="let method of paymentMethods$ | async"
+            >
+              <div class="analysis__item" *ngIf="method.name !== 'OnlineAccountTransfer'">
+                <img
+                  src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__green__card__with__bg.svg"
+                  alt=""
+                  *ngIf="method.name === 'Card'"
+                />
+                <img
+                  src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__red__pulse__with__bg.svg"
+                  alt=""
+                  *ngIf="method.name === 'Cash'"
+                />
+                <img
+                  src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__yellow__paperplane__with__bg.svg"
+                  alt=""
+                  *ngIf="method.name === 'OnlineUssd'"
+                />
+                <div class="analysis-data">
+                  <p class="text__bold">{{ method.count }}</p>
+                  <span class="text__small text-gray">
+                    {{
+                      method.name === "OnlineAccountTransfer"
+                        ? "Online"
+                        : method.name
+                    }}
+                    Transactions
+                  </span>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Charts -->
+          <div class="row charts" style="padding: 32.8px 0 32.8px">
+            <div
+              class="row-col__md-6"
+              *ngIf="paymentMethodsQuantityStatistics$ | async"
+            >
+              <p
+                class="text-gray text__default pl-3"
+                style="text-align: center"
+              >
+                Transaction Count
+              </p>
+              <dashboard-donut-container
+                [params]="paymentMethodsQuantityStatistics$ | async"
+              ></dashboard-donut-container>
+            </div>
+            <div
+              class="row-col__md-6"
+              *ngIf="paymentMethodsValueStatistics$ | async"
+            >
+              <p
+                class="text-gray text__default pl-3"
+                style="text-align: center"
+              >
+                Transaction Value
+              </p>
+              <dashboard-donut-container
+                [params]="paymentMethodsValueStatistics$ | async"
+              ></dashboard-donut-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Card -->
+      <div class="row-col__lg-3">
+        <div class="dash-analysis-card right-container">
+          <div class="sub-section">
+            <p>Current Sub. Date: {{merchant.lastPaymentDate|date: 'd/M/yyyy'}}</p>
+            <p>Subscription Expiry Date: {{merchant.nextPaymentDate|date: 'd/M/yyyy'}}</p>
+            <p>Subscription Plan: {{merchant.currentSubscriptionPlan.type}}</p>
+            <div>
+              <button class="btn btn__sm no-margin" [routerLink]="'/pay'">Pay Now</button>
+            </div>
+          </div>
+          <!-- Top Products -->
+          <div class="analysis__section">
+            <div class="header-flex">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__red__paper__stack__with__bg.svg"
+                alt=""
+              />
+              <div>
+                <p class="text-gray text__small">Most Sold Product</p>
+                <div class="analysis__item mb-3" style="height: 56px">
+                  <div class="analysis-data">
+                    <ng-container
+                      *ngIf="topValueProducts$ | async as tvp; else noProduct"
+                    >
+                      <p class="text__bold">
+                        {{ tvp[0]?.totalAmount|number| customcurrency}}
+                      </p>
+                      <span class="text__small">
+                        {{ tvp[0]?.product }}
+                      </span>
+                    </ng-container>
+                    <span class="text__small text-gray">Highest Value</span>
+                  </div>
+
+                  <ng-template #noProduct>
+                    <p class="text__bold">--</p>
+                    <span class="text__small"> -- </span>
+                  </ng-template>
+                </div>
+                <div class="analysis__item mb-3" style="height: 56px">
+                  <div class="analysis-data">
+                    <ng-container
+                      *ngIf="topQuantityProducts$ | async as tqp; else noProduct"
+                    >
+                      <p class="text__bold">
+                        {{ tqp[0]?.totalAmount|number | customcurrency}}
+                      </p>
+                      <span class="text__small">
+                        {{ tqp[0]?.product }}
+                      </span>
+                    </ng-container>
+                    <span class="text__small text-gray">Highest Quantity</span>
+                  </div>
+
+                  <ng-template #noProduct>
+                    <p class="text__bold">--</p>
+                    <span class="text__small"> -- </span>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Cashier -->
+          <div class="analysis__section pb-2 border-bottom top-cashier">
+            <div class="header-flex">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__blue__badge__with__bg.svg"
+                alt=""
+              />
+              <div>
+                <p class="text-gray text__small">Top Cashier</p>
+                <div class="analysis__item">
+                  <ng-container *ngIf="topCashier$ | async as tc; else noCustomer">
+                    <div
+                      class="analysis-data"
+                      *ngFor="let cashier of tc; let index = index"
+                    >
+                      <ng-container *ngIf="index === 0">
+                        <p class="text__bold mb-1">
+                          {{ cashier?.firstName }} {{ cashier?.lastName }}
+                        </p>
+                        <span class="text-gray text__small mb-1">
+                          {{ cashier?.currentStore }}
+                        </span>
+                        <span class="text-gray text__small mb-1">
+                          Quantity Sold
+                          <b style="color: black"
+                            >{{ cashier?.totalItems }} items</b
+                          >
+                        </span>
+                        <span class="text-gray text__small">
+                          Sales in value
+                          <b style="color: black"> {{ cashier?.totalAmount | customcurrency}}</b>
+                        </span>
+                      </ng-container>
+                    </div>
+                  </ng-container>
+
+                  <ng-template #noCustomer>
+                    <div class="analysis-data" style="height: 118px">
+                      <ng-container *ngIf="index === 0">
+                        <p class="text__bold mb-1">-- --</p>
+                        <span class="text-gray text__small mb-1"> -- </span>
+                        <span class="text-gray text__small mb-1">
+                          Sold
+                          <b style="color: black"> -- items</b>
+                        </span>
+                        <span class="text-gray text__small">
+                          Revenue
+                          <b style="color: black">--</b>
+                        </span>
+                      </ng-container>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Top Customers -->
+          <div class="analysis__section pt-3">
+            <div class="header-flex">
+              <img
+                src="https://assetslogos.s3.eu-west-1.amazonaws.com/frontendassets/icons/icon__yellow__badge__with__bg.svg"
+                alt=""
+              />
+              <div style="width: 100%;">
+                <p class="text-gray text__small">Top Customers</p>
+                <div class="analysis__item mb-3">
+                  <div class="row" style="width: 100%">
+                    <div
+                      class="row-col__md-4 mb-1"
+                      *ngFor="let customer of topCustomers$ | async"
+                    >
+                      <div class="customer-data-container">
+                        <p class="text__bold customer-avatar">
+                          {{ customer.fullName | Initials }}
+                        </p>
+                        <span class="text-gray text__small">
+                          {{ customer.fullName }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <app-first-action></app-first-action> -->

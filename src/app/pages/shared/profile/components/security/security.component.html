@@ -1,0 +1,15 @@
+<lib-loader></lib-loader>
+<section class="profile-display row">
+  <div class="profile-form">
+    <lib-dynamic-form #form [fieldset]="securityForm" [errors]="errors">
+    </lib-dynamic-form>
+
+    <button
+      class="btn btn-primary no-margin profile-btn mt-5"
+      [disabled]="form.form.invalid || loader.status"
+      (click)="changePin()"
+    >
+      Save changes
+    </button>
+  </div>
+</section>

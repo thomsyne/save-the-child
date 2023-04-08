@@ -1,0 +1,34 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="login">
+  <lib-loader></lib-loader>
+
+  <h1 class="text-center">Hi, Welcome Back!</h1>
+
+  <p class="sub-head text-center">
+    Please enter your details to login to your account.
+  </p>
+
+  <div class="form-central__form">
+    <lib-dynamic-form
+      #loginForm
+      [fieldset]="loginDetailsForm"
+      [errors]="errors"
+    ></lib-dynamic-form>
+  </div>
+  <div class="flexed">
+    <a class="ml-auto mb-4 text-primary" routerLink="/reset-password"
+      >Forgot Password?</a
+    >
+  </div>
+
+  <button
+    [disabled]="loginForm.form.invalid || loader.status"
+    class="btn btn-primary btn__lg login__button"
+    (click)="logIn()"
+  >
+    Login
+  </button>
+  <a class="login__signup" routerLink="/onboarding"
+    >Not onboard yet? <span>Create Account</span></a
+  >
+</div>

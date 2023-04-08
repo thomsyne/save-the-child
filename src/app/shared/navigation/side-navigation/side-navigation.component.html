@@ -1,0 +1,59 @@
+<div class="sidenav" [class.isOpen]="isNavOpen" [class.ease-out]="easeOut">
+  <img
+    src="assets/images/logo-2.png"
+    alt="sidenav__close"
+    class="sidenav__close hovered"
+    (click)="close()"
+  />
+  <img
+    src="assets/images/logo-2.png"
+    class="sidenav-image"
+    id="sidenav-img"
+    alt="logo"
+  />
+
+  <nav class="sidenav-nav">
+    <ul class="sidenav-nav__nav-items">
+      <ng-container *ngFor="let nav of navConfig">
+          <li
+          class="sidenav-nav__nav-item"
+          routerLinkActive="active"
+          [routerLink]="nav.url"
+          (click)="close()"
+          *hasPermission="[nav.permission]"
+        >
+          <ng-container>
+            <svg class="icon">
+              <use [attr.xlink:href]="nav.iconUrl"></use>
+            </svg>
+
+            <a class="sidenav-nav__nav-item-link">{{ nav.name }}</a>
+          </ng-container>
+        </li>
+      </ng-container>
+
+      <hr *ngIf="navConfigMinor?.length > 0" />
+
+      <li
+        *ngFor="let nav of navConfigMinor"
+        class="sidenav-nav__nav-item"
+        routerLinkActive="active"
+        [routerLink]="nav.url"
+      >
+        <ng-container *hasPermission="permissions">
+          <svg class="icon">
+            <use [attr.xlink:href]="nav.iconUrl"></use>
+          </svg>
+
+          <a class="sidenav-nav__nav-item-link">{{ nav.name }}</a>
+        </ng-container>
+      </li>
+    </ul>
+    
+    <div class="powered-by">
+      <p>Powered by</p>
+      <img src="assets/images/ANP_Logo.png" />
+    </div>
+
+  </nav>
+</div>

@@ -1,0 +1,45 @@
+<section class="center-layout">
+  <div class="form-central">
+    <div class="form-central__headings">
+      <h4 class="heading__4">Add New User Role</h4>
+      <span class="text__default">Enter details to add a user role</span>
+    </div>
+    <div class="form-central__content">
+      <div class="form-central__form">
+        <div class="row">
+          <div class="row-col__sm-6 section__role">
+            <lib-dynamic-form
+              #roleForm
+              [fieldset]="createRoleForm"
+              [errors]="errors"
+            >
+            </lib-dynamic-form>
+          </div>
+          <div class="row-col__sm-6 section__access__container">
+            <h5 class="heading__5">Role Access</h5>
+            <div class="section__access" *ngIf="createRoleAccessForm.length">
+              <lib-dynamic-form
+                #accessForm
+                [fieldset]="createRoleAccessForm"
+                [errors]="errors"
+              >
+              </lib-dynamic-form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-central__content-actions">
+        <button
+          routerLink="/staff/permissions"
+          class="btn btn-white"
+        >
+          Cancel
+        </button>
+        <button class="btn btn-primary" (click)="createRole()" [disabled]="roleForm.form.invalid">
+          Add User Role
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+

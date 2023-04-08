@@ -1,0 +1,85 @@
+.logo {
+  width: 110px;
+  margin-bottom: 1.5rem;
+}
+
+.subscription-options-container {
+  padding: 3rem 0;
+}
+
+.subscription-options-heading {
+  text-align: center;
+  .highlight {
+    display: inline-block;
+    color: var(--color-primary);
+  }
+}
+
+.subscription-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+
+  &__option {
+    background: white;
+    width: 307px;
+    padding: 32px 24px;
+    border-radius: 8px;
+    border: 2.5px solid #ededed85;
+
+    &--selected {
+      border: 1px solid #da3832;
+    }
+
+    &__text {
+      height: 65px;
+    }
+
+    .flexed {
+      justify-content: space-between;
+      align-items: center;
+
+      .badge {
+        color: #ED1C25;
+        background: #FBCACCB8;
+      }
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    margin: 0;
+  }
+
+  &__ability {
+    padding-top: 1rem;
+    border-top: 1.5px solid #ededed85;
+    p {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+  .subscription-options-scroller {
+    overflow-x: scroll;
+    max-width: 97vw;
+    margin: auto;
+  }
+
+  .subscription-options {
+    flex-wrap: nowrap;
+    justify-content: unset;
+    &__option {
+      width: 260px;
+      min-width: 260px;
+    }
+  }
+}
+

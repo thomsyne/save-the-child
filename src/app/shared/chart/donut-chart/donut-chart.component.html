@@ -1,0 +1,36 @@
+<div class="donut-chart-container" style="position: relative; width: 100%">
+  <div [id]="chartParameters.chartId">
+    <apx-chart
+      [series]="donutChartOptions.series"
+      [chart]="donutChartOptions.chart"
+      [tooltip]="donutChartOptions.tooltip"
+      [labels]="donutChartOptions.labels"
+      [responsive]="donutChartOptions.responsive"
+      [dataLabels]="donutChartOptions.dataLabels"
+      [stroke]="donutChartOptions.stroke"
+      [plotOptions]="donutChartOptions.plotOptions"
+      [fill]="donutChartOptions.fill"
+      [legend]="donutChartOptions.legend"
+      [colors]="donutChartOptions.colors"
+    ></apx-chart>
+    <div class="custom-legends" *ngIf="false">
+      <div
+        class="custom-legend"
+        *ngFor="let label of chartParameters.chartLabels; let idx = index"
+      >
+        <span class="custom-legend__key text__bold">{{ label }}</span>
+        <div
+          class="custom-legend__bar"
+          [style.backgroundColor]="chartParameters.chartColors[idx]"
+        ></div>
+        <span class="custom-legend__value">{{
+          chartParameters.chartLabelValues[idx]
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <!-- TODO: Change getTotal() to a pipe -->
+  <!-- <span class="donut-chart-label"
+    >{{ chartParameters.prefix }}<br/>{{ getTotal() | number }} {{ chartParameters.chartRepresents }}</span
+  > -->
+</div>

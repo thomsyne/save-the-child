@@ -1,0 +1,24 @@
+<main class="layout-container">
+
+  <div class="sidenav-container isMobileOverlay" [class.isOpen]="isNavOpen">
+    <lib-side-navigation
+      [isNavOpen]="isNavOpen"
+      (toggleHamburger)="isNavOpen = !isNavOpen"
+      [navConfig]="navConfig"
+      [navConfigMinor]="navConfigMinor"
+      [permissions]="permissions"
+    ></lib-side-navigation>
+  </div>
+
+  <div class="layout-container-content">
+    <lib-top-navigation
+      [links]="links"
+      (toggleHamburger)="isNavOpen = !isNavOpen"
+      (clickLink)="dropDownClick($event)"
+    ></lib-top-navigation>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>

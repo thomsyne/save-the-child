@@ -1,0 +1,108 @@
+<div class="cards-container">
+  <div class="container">
+
+    <!-- bread crumbs -->
+    <div
+      class="reposition-breadcrumbs"
+      *ngIf="
+        !currentUrl.includes('products') &&
+        currentUrl !== 'categories' &&
+        !currentUrl.includes('shops')
+        "
+    >
+      <ul class="breadcrumbs-container">
+        <li class="crumb" routerLink="/products" queryParamsHandling="preserve"
+          *ngIf="!currentUrl.includes('transactions') &&
+                 !currentUrl.includes('profile') &&
+                 !currentUrl.includes('inventory')"
+        >
+          <a class="crumb-link">
+            My Products
+          </a>
+        </li>
+        <li
+          class="crumb" routerLink="/products/shops" queryParamsHandling="preserve"
+          *ngIf="currentUrl.includes('transactions') ||
+            currentUrl.includes('profile') ||
+            currentUrl.includes('inventory')"
+        >
+          <a class="crumb-link">
+            Shops
+          </a>
+        </li>
+
+        <li class="crumb active-crumb" *ngIf="currentUrl == 'create'">
+          <a class="crumb-link">Add New Product</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('edit')">
+          <a class="crumb-link">Update Product</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('transactions')">
+          <a class="crumb-link">Transactions</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('profile') ">
+          <a class="crumb-link">Profile</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('inventory') ">
+          <a class="crumb-link">Inventory</a>
+        </li>
+        <li class="crumb active-crumb" *ngIf="currentUrl.includes('stocks') ">
+          <a class="crumb-link">Stocks</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- dynamic header -->
+    <div class="top-section flexed mb-4"*ngIf="currentUrl.includes('products')">
+      <div class="intro flex-1">
+        <h1 class="heading__4 no-margin">My Products</h1>
+      </div>
+    </div>
+    <div class="top-section flexed mb-4" *ngIf="currentUrl == 'categories'">
+      <div class="intro flex-1">
+        <h1 class="heading__4 no-margin">My Products Categories</h1>
+      </div>
+    </div>
+    <div class="top-section flexed mb-4" *ngIf="currentUrl.includes('shops')">
+      <div class="intro flex-1">
+        <h1 class="heading__4 no-margin">Shops</h1>
+      </div>
+    </div>
+
+    <!-- tabs -->
+    <ul
+      class="tabs"
+      *ngIf="
+        currentUrl !== 'create' && currentUrl !== 'update' && !currentUrl.includes('edit') &&
+        !currentUrl.includes('transactions') && !currentUrl.includes('profile') && !currentUrl.includes('inventory') && currentUrl !== 'stocks'
+      "
+    >
+      <li
+        class="tab-item" [routerLink]="'/products'"
+        [routerLinkActive]="'active'"
+        [routerLinkActiveOptions]="{exact: true }"
+        *hasPermission="['CAN_VIEW_PRODUCT']"
+      >
+        Manage Products
+      </li>
+      <li
+        class="tab-item"
+        routerLinkActive="active"
+        [routerLink]="'/products/shops'"
+      >
+        Shops
+      </li>
+      <li
+        class="tab-item" [routerLink]="'/products/categories'"
+        routerLinkActive="active"
+        *hasPermission="['CAN_VIEW_CATEGORY']"
+      >
+        Product Categories
+      </li>
+    </ul>
+
+    <div class="" style="padding-top: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

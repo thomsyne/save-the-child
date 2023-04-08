@@ -1,0 +1,59 @@
+<lib-modal
+  [modalType]="modalData.modalType"
+  [header]="modalData.header"
+  [subHeader]="modalData.subHeader"
+  [buttonText]="modalData.buttonText"
+  (cancel)="closeModal.emit()"
+  (submit)="printTransactionDetail(transaction.id)"
+>
+<div class="details-section--card">
+  <div class="details-section--card_header">
+    <h4 class="heading__4">{{transaction.orderNumber}}</h4>
+    <p>{{transaction.paymentStatus}}</p>
+  </div>
+  <div class="metadata-container"> 
+    <div class="metadata-entry">
+      <span class="metadata-entry_name">Order Date</span>
+      <span class="metadata-entry_value">
+        {{transaction.orderDate|date}}
+      </span>
+    </div>
+    <div class="metadata-entry">
+      <span class="metadata-entry_name">Transaction Ref</span>
+      <span class="metadata-entry_value">
+        {{transaction.transactionReference}}
+      </span>
+    </div>
+    <div class="metadata-entry">
+      <span class="metadata-entry_name">Payment Mode</span>
+      <span class="metadata-entry_value">
+        {{transaction.paymentMethod}}
+      </span>
+    </div>
+    <div class="metadata-entry">
+      <span class="metadata-entry_name">Cashier</span>
+      <span class="metadata-entry_value">
+        {{transaction.soldBy}}
+      </span>
+    </div>
+    <div class="metadata-entry">
+      <span class="metadata-entry_name">Initial Price</span>
+      <span class="metadata-entry_value">
+        {{transaction.totalAmount}}
+      </span>
+    </div>
+    <div class="metadata-entry">
+      <span class="metadata-entry_name">Discount</span>
+      <span class="metadata-entry_value">
+        {{transaction.discount}}
+      </span>
+    </div>
+    <div class="metadata-entry">
+      <span class="metadata-entry_name">Final Price</span>
+      <span class="metadata-entry_value">
+        {{(transaction.totalAmount* transaction.totalQuantity) - transaction.discount}}
+      </span>
+    </div>
+  </div>
+</div>
+</lib-modal>

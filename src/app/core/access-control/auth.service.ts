@@ -57,7 +57,7 @@ export class AuthService {
     if (this.storageService.isGaAdmin()) {
       this.router.navigate(["../../admin-login"]);
     } else {
-      this.router.navigate(["../../login"]);
+      this.router.navigate([""]);
     }
     this.storageService.clearStorage();
   }
